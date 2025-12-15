@@ -1,276 +1,290 @@
 # Tech Context: Stack Versions & Configuration
 
-**Last Updated**: December 15, 2025
+**Last Updated**: [DATE] - Update when tech stack or versions change
+
+> **IMPORTANT**: This is a TEMPLATE. Replace all placeholder values with your actual tech stack when starting your project.
 
 ## Core Technology Stack
 
 ### Frontend
-- **React**: 18.3.1
-- **TypeScript**: 5.6.3
-- **Vite**: 5.4.11
-- **React Router**: 6.28.0
+- **Framework**: [e.g., React, Vue, Svelte, Angular, Next.js]
+- **Version**: [e.g., 18.x, 3.x, etc.]
+- **Language**: [e.g., TypeScript, JavaScript]
+- **Build Tool**: [e.g., Vite, Webpack, Turbopack]
+- **Router**: [e.g., React Router, Vue Router, TanStack Router]
+
+Example:
+```
+- React: 18.3.1
+- TypeScript: 5.6.3
+- Vite: 5.4.11
+- React Router: 6.28.0
+```
 
 ### UI Framework
-- **Tailwind CSS**: 3.4.15
-- **shadcn/ui**: Latest (component library, not versioned package)
-- **Radix UI**: Various components (@radix-ui/react-*)
-- **Lucide React**: 0.468.0 (icons)
+- **CSS Framework**: [e.g., Tailwind CSS, Material-UI, Bootstrap, Chakra UI]
+- **Component Library**: [e.g., shadcn/ui, Radix UI, Headless UI, Ant Design]
+- **Icons**: [e.g., Lucide React, Heroicons, Font Awesome, React Icons]
 
-### Mobile
-- **Capacitor**: 6.2.0
-  - `@capacitor/core`: 6.2.0
-  - `@capacitor/ios`: 6.2.0
-  - `@capacitor/android`: 6.2.0
-  - `@capacitor/cli`: 6.2.0
+### Mobile (if applicable)
+- **Platform**: [e.g., React Native, Flutter, Capacitor, Native iOS/Android]
+- **Version**: [Specify versions]
+- **Supported OS**: 
+  - iOS: [Minimum version - e.g., iOS 13+]
+  - Android: [Minimum API level - e.g., API 22+]
+
+Example:
+```
+- Capacitor: 6.2.0
+- iOS: 13.0+
+- Android: API 22+ (Android 5.1+)
+```
 
 ### Backend & Database
-- **Supabase JS**: 2.46.2
-- **PostgreSQL**: 15.x (managed by Supabase)
-- **Deno**: 1.x (for Edge Functions)
+- **Backend**: [e.g., Supabase, Firebase, Node.js/Express, Python/FastAPI, Go]
+- **Database**: [e.g., PostgreSQL, MySQL, MongoDB, SQLite]
+- **ORM/Query Builder**: [e.g., Prisma, Drizzle, TypeORM, Sequelize]
+- **API Type**: [e.g., REST, GraphQL, tRPC, gRPC]
 
 ### Authentication
-- **Supabase Auth**: Built-in
-- **Email Verification**: Required
-- **Invite System**: Custom (via Edge Functions)
+- **Provider**: [e.g., Supabase Auth, Firebase Auth, Auth0, Clerk, NextAuth]
+- **Methods**: [e.g., Email/Password, OAuth (Google, GitHub), Magic Links]
+- **Session Management**: [e.g., JWT, Cookies, Server sessions]
 
-### Email
-- **Resend**: Latest
-- **Domain**: `scheduleboard.co` (verified)
-- **From Address**: `noreply@scheduleboard.co`
+### Email (if applicable)
+- **Provider**: [e.g., Resend, SendGrid, AWS SES, Mailgun, Postmark]
+- **Domain**: [Your verified sending domain]
+- **From Address**: [e.g., noreply@yourdomain.com]
 
-### Payments
-- **Stripe**: Latest
-- **Products**: Configured in Stripe Dashboard
-- **Webhook**: Edge Function handler
+### Payments (if applicable)
+- **Provider**: [e.g., Stripe, PayPal, Square, Paddle]
+- **Integration Type**: [e.g., Stripe Checkout, Payment Intents, Subscriptions]
+- **Webhook Handling**: [How you process webhooks]
 
 ### Hosting & Deployment
-- **Vercel**: Latest
-- **Domain Management**: Vercel DNS
-- **Environment Variables**: Vercel project settings
+- **Frontend Hosting**: [e.g., Vercel, Netlify, Cloudflare Pages, AWS Amplify]
+- **Backend Hosting**: [e.g., Vercel, Railway, Render, AWS, GCP, DigitalOcean]
+- **Domain**: [Your domain name]
+- **CDN**: [e.g., Vercel Edge Network, Cloudflare, AWS CloudFront]
 
 ## Development Environment
 
 ### Required Tools
-- **Node.js**: 20.x LTS
-- **pnpm**: 8.x (package manager)
-- **VS Code**: Latest (with GitHub Copilot)
-- **Xcode**: Latest (for iOS builds)
-- **Android Studio**: Latest (for Android builds)
+- **Runtime**: [e.g., Node.js 20.x LTS, Python 3.11, Go 1.21]
+- **Package Manager**: [e.g., npm, pnpm, yarn, pip, poetry]
+- **IDE**: [e.g., VS Code, WebStorm, PyCharm]
+- **Mobile Tools** (if applicable): [e.g., Xcode, Android Studio]
 
-### VS Code Extensions
-- GitHub Copilot
-- ESLint
-- Prettier
-- Tailwind CSS IntelliSense
-- TypeScript and JavaScript Language Features
+### IDE Extensions/Plugins
+- [List your essential extensions]
+- [e.g., ESLint, Prettier, Tailwind CSS IntelliSense]
+- [e.g., GitHub Copilot, TypeScript Language Features]
 
 ## Environment Variables
 
-### Frontend (Vite - `VITE_` prefix required)
+> **IMPORTANT**: Replace with your actual environment variables
+
+### Frontend (Client-side)
 ```bash
-VITE_SUPABASE_URL=https://[project-ref].supabase.co
-VITE_SUPABASE_ANON_KEY=eyJ...
-VITE_STRIPE_PUBLISHABLE_KEY=pk_test_...
+# Example for Vite (VITE_ prefix)
+VITE_API_URL=https://api.yourdomain.com
+VITE_PUBLIC_KEY=your_public_key
+
+# Example for Next.js (NEXT_PUBLIC_ prefix)
+NEXT_PUBLIC_API_URL=https://api.yourdomain.com
 ```
 
-### Backend (Edge Functions - Server-side only)
+### Backend (Server-side only)
 ```bash
-SUPABASE_SERVICE_ROLE_KEY=eyJ...
-RESEND_API_KEY=re_...
-STRIPE_SECRET_KEY=sk_test_...
-STRIPE_WEBHOOK_SECRET=whsec_...
+# Example secrets (NEVER expose to client)
+DATABASE_URL=postgresql://user:password@host:5432/db
+API_SECRET_KEY=your_secret_key
+STRIPE_SECRET_KEY=sk_live_...
 ```
 
 ### Development vs Production
-- **Development**: Use Stripe test mode keys
+- **Development**: Use test/sandbox API keys
 - **Production**: Use live keys, enforce HTTPS
+- **Staging** (optional): Separate environment for testing
 
 ## Database Configuration
 
-### Supabase Project Settings
-- **Project ID**: (Set per deployed instance)
-- **Region**: US West (or closest to target users)
-- **Postgres Version**: 15.x
-- **Extensions Enabled**:
-  - `uuid-ossp`: UUID generation
-  - `pgcrypto`: Encryption functions
-  - `pg_stat_statements`: Query performance monitoring
+### [Your Database] Settings
+- **Connection String**: [How to connect]
+- **Version**: [e.g., PostgreSQL 15.x, MongoDB 7.x]
+- **Region/Location**: [Where hosted]
+- **Extensions/Features**: [What you're using]
 
-### Connection Details
+Example for PostgreSQL:
 ```typescript
+// Connection configuration
 import { createClient } from '@supabase/supabase-js';
 
-const supabase = createClient(
-  import.meta.env.VITE_SUPABASE_URL,
-  import.meta.env.VITE_SUPABASE_ANON_KEY,
-  {
-    auth: {
-      autoRefreshToken: true,
-      persistSession: true,
-      detectSessionInUrl: true
-    }
-  }
+const db = createClient(
+  process.env.DATABASE_URL,
+  process.env.DATABASE_KEY
 );
 ```
 
-## Mobile Platform Configuration
+Example for MongoDB:
+```typescript
+import { MongoClient } from 'mongodb';
 
-### iOS (Capacitor)
+const client = new MongoClient(process.env.MONGODB_URI);
+```
+
+## Mobile Platform Configuration (if applicable)
+
+### iOS
 ```json
-// ios/App/App/capacitor.config.json
+// Example: ios/App/capacitor.config.json
 {
-  "appId": "co.scheduleboard.app",
-  "appName": "ScheduleBoard",
-  "bundleId": "co.scheduleboard.app",
+  "appId": "com.yourcompany.app",
+  "appName": "Your App Name",
+  "bundleId": "com.yourcompany.app",
   "version": "1.0.0",
   "build": "1"
 }
 ```
 
-**Minimum iOS Version**: 13.0  
-**Target iOS Version**: Latest  
-**Build Increment Script**: `scripts/increment-ios-build.js`
+**Minimum iOS Version**: [e.g., 13.0]  
+**Target iOS Version**: [e.g., Latest]
 
-### Android (Capacitor)
+### Android
 ```json
-// android/app/build.gradle
+// Example: android/app/build.gradle
 {
-  "applicationId": "co.scheduleboard.app",
+  "applicationId": "com.yourcompany.app",
   "versionName": "1.0.0",
   "versionCode": 1,
-  "minSdkVersion": 22,
-  "targetSdkVersion": 34
+  "minSdkVersion": [e.g., 22],
+  "targetSdkVersion": [e.g., 34]
 }
 ```
 
-**Minimum Android Version**: 22 (Android 5.1)  
-**Target Android Version**: 34 (Android 14)  
-**Build Increment Script**: `scripts/increment-android-build.js`
+**Minimum Android Version**: [e.g., API 22 (Android 5.1)]  
+**Target Android Version**: [e.g., API 34 (Android 14)]
 
 ## API Keys & Secrets Management
 
 ### Development
-- Local `.env` file (not committed)
-- Load via Vite (`import.meta.env`)
+- Local `.env` file (not committed to git)
+- Add `.env` to `.gitignore`
+- Use `.env.example` as template for team
 
 ### Production
-- Vercel Environment Variables
-- Edge Functions Secrets (via Supabase Dashboard)
-- Never commit secrets to git
+- [e.g., Vercel Environment Variables]
+- [e.g., AWS Secrets Manager]
+- [e.g., Doppler, HashiCorp Vault]
+- **NEVER commit secrets to git**
 
 ### Rotation Schedule
-- **Stripe Test Keys**: Never rotate (test mode)
-- **Stripe Live Keys**: Rotate annually
-- **Supabase Keys**: Rotate on security incident
-- **Resend API Key**: Rotate quarterly
+Document when to rotate keys:
+- **[Service 1]**: [e.g., Rotate quarterly]
+- **[Service 2]**: [e.g., Rotate annually]
+- **[Service 3]**: [e.g., Rotate on security incident]
 
 ## Build & Deploy Configuration
 
-### Vercel Project Settings
+### [Your Hosting Provider] Settings
+```json
+{
+  "framework": "[your framework]",
+  "buildCommand": "[your build command]",
+  "outputDirectory": "[your output dir]",
+  "installCommand": "[your install command]"
+}
+```
+
+Example for Vercel:
 ```json
 {
   "framework": "vite",
-  "buildCommand": "pnpm build",
+  "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "installCommand": "pnpm install",
-  "nodeVersion": "20.x"
+  "installCommand": "npm install"
 }
 ```
 
 ### Build Optimization
-- **Code Splitting**: Automatic (Vite)
-- **Tree Shaking**: Enabled
-- **Minification**: Enabled in production
-- **Source Maps**: Enabled for debugging
+- **Code Splitting**: [Enabled/Disabled, how configured]
+- **Tree Shaking**: [Enabled/Disabled]
+- **Minification**: [Enabled in production]
+- **Source Maps**: [Enabled for debugging]
 
 ## Performance Targets
 
-### Core Web Vitals
-- **LCP** (Largest Contentful Paint): < 2.5s
-- **FID** (First Input Delay): < 100ms
-- **CLS** (Cumulative Layout Shift): < 0.1
+### Core Web Vitals (if web app)
+- **LCP** (Largest Contentful Paint): [e.g., < 2.5s]
+- **FID** (First Input Delay): [e.g., < 100ms]
+- **CLS** (Cumulative Layout Shift): [e.g., < 0.1]
 
-### Mobile Performance
-- **App Launch**: < 2s to interactive
-- **Route Navigation**: < 300ms
-- **API Response**: < 1s for 95th percentile
+### App Performance (if mobile)
+- **App Launch**: [e.g., < 2s to interactive]
+- **Route Navigation**: [e.g., < 300ms]
+- **API Response**: [e.g., < 1s for 95th percentile]
 
 ## Monitoring & Observability
 
 ### Error Tracking
-- **Frontend**: Browser console + Vercel Analytics
-- **Backend**: Edge Function logs in Supabase Dashboard
-- **Database**: Postgres logs + slow query monitoring
+- **Frontend**: [e.g., Sentry, LogRocket, Rollbar]
+- **Backend**: [e.g., Sentry, Datadog, CloudWatch]
+- **Database**: [e.g., Built-in logs, PgAnalyze]
 
 ### Analytics
-- **User Events**: (TBD - add analytics provider)
-- **Performance**: Vercel Analytics
-- **Database**: Supabase Dashboard metrics
+- **User Events**: [e.g., Google Analytics, Mixpanel, PostHog]
+- **Performance**: [e.g., Vercel Analytics, Lighthouse CI]
+- **Custom Metrics**: [Your specific tracking]
 
 ## Security Configuration
 
-### Content Security Policy
+### Content Security Policy (if web app)
 ```html
 <meta http-equiv="Content-Security-Policy" 
-  content="default-src 'self'; connect-src 'self' https://*.supabase.co;">
+  content="default-src 'self'; connect-src 'self' https://api.yourdomain.com;">
 ```
 
 ### CORS Configuration
-- **Supabase**: Configured in dashboard
-- **Vercel**: Automatic HTTPS enforcement
-- **Edge Functions**: Explicit CORS headers
+- **[Your API]**: [Allowed origins]
+- **[Your CDN]**: [Configuration]
 
 ### Rate Limiting
-- **Supabase**: Built-in (per-plan limits)
-- **Stripe**: Built-in (Stripe manages)
-- **Custom**: Implement via Edge Functions if needed
+- **[Service 1]**: [Limits and configuration]
+- **[Service 2]**: [Limits and configuration]
 
 ## Third-Party Service Limits
 
-### Supabase (Free Tier Limits)
-- Database: 500 MB
-- Storage: 1 GB
-- Bandwidth: 2 GB
-- Edge Functions: 500K requests/month
+Document free tier limits for planning:
 
-### Vercel (Hobby Tier Limits)
-- Builds: 6,000 minutes/month
-- Bandwidth: 100 GB
-- Serverless Functions: 100 GB-hours
+### [Service 1]
+- [Limit 1]: [e.g., 500 MB storage]
+- [Limit 2]: [e.g., 100K requests/month]
+- [Limit 3]: [e.g., 5 GB bandwidth]
 
-### Resend (Free Tier Limits)
-- Emails: 3,000/month
-- Rate: 100/hour
+### [Service 2]
+- [Limit 1]: [e.g., 3,000 emails/month]
+- [Limit 2]: [e.g., 100 emails/hour]
 
-### Stripe
-- No request limits on paid accounts
-- Test mode: Unlimited
-
-## Upgrade Paths
-
+### Upgrade Paths
 When hitting free tier limits:
-1. **Supabase**: Pro plan ($25/month)
-2. **Vercel**: Pro plan ($20/month)
-3. **Resend**: Growth plan ($20/month)
-4. **Stripe**: No action needed (paid on usage)
+1. **[Service 1]**: [Plan name] at [$X/month]
+2. **[Service 2]**: [Plan name] at [$X/month]
 
 ## Known Issues & Workarounds
 
-### iOS Keyboard Overlap
-- **Issue**: Keyboard covers input on some iOS versions
-- **Workaround**: Use `viewport-fit=cover` meta tag
+Document platform-specific issues and solutions:
 
-### Android Back Button
-- **Issue**: Back button doesn't work as expected
-- **Workaround**: Implement custom back button handler in Capacitor
+### [Issue 1 Title]
+- **Issue**: [Description of the problem]
+- **Workaround**: [How to handle it]
 
-### Supabase Realtime Reconnection
-- **Issue**: Websocket doesn't auto-reconnect reliably
-- **Workaround**: Manual reconnect logic in app
+### [Issue 2 Title]
+- **Issue**: [Description of the problem]
+- **Workaround**: [How to handle it]
 
 ## Dependency Update Strategy
 
-- **Major versions**: Manual review required
-- **Minor versions**: Auto-update via Dependabot
-- **Patch versions**: Auto-update and deploy
-- **Security updates**: Immediate manual update
+- **Major versions**: [e.g., Manual review required]
+- **Minor versions**: [e.g., Auto-update via Dependabot]
+- **Patch versions**: [e.g., Auto-update and deploy]
+- **Security updates**: [e.g., Immediate manual update]

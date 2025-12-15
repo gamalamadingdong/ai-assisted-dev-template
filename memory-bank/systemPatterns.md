@@ -1,346 +1,275 @@
 # System Patterns: Architecture & Coding Standards
 
-**Last Updated**: December 15, 2025
+**Last Updated**: [DATE] - Update when you establish new patterns
+
+> **IMPORTANT**: This is a TEMPLATE. Replace with YOUR project's actual patterns as they emerge.
+
+## How to Use This File
+
+1. **Don't fill this out upfront** - Let patterns emerge naturally as you build
+2. **Document what works** - When you solve a problem well, document the pattern here
+3. **Evolve over time** - Update as your understanding deepens
+4. **Keep it practical** - Focus on patterns you actually use, not theoretical best practices
 
 ## Architectural Principles
 
-### 1. Mobile-First, Always
-- Touch targets minimum 44x44px
-- Swipe gestures for navigation
-- Optimistic UI updates
-- Offline-first data layer
-- Responsive breakpoints: mobile (default) → tablet (768px) → desktop (1024px)
+### [Your Core Principle #1]
+[Describe the principle and why it matters for your project]
 
-### 2. Multi-Tenant Isolation
-- Every table has `business_id` foreign key
-- Row Level Security (RLS) enforces isolation
-- No cross-tenant data leakage possible
-- Business context from auth claims
+Example:
+> **Mobile-First Design**
+> - Touch targets minimum 44x44px (Apple HIG)
+> - Swipe gestures for common actions
+> - Offline-first data layer for reliability
+> - Test on actual devices, not just browser DevTools
 
-### 3. Data-First Design
-**"Bad programmers worry about code. Good programmers worry about data structures"**
+### [Your Core Principle #2]
+[Describe the principle]
 
-Always define:
-1. Database entities and relationships FIRST
-2. TypeScript interfaces matching DB schema
-3. Business logic and invariants
-4. Then build UI components
+Example:
+> **Data-First Design**
+> - Define database schema and TypeScript interfaces BEFORE building UI
+> - Data structures drive component design, not the reverse
+> - Validate data at boundaries (API input, form submission)
 
-### 4. Simplicity Over Cleverness
-- YAGNI: Reject "future-proofing"
-- Direct functions over design patterns
-- No abstractions until duplication proven
-- Challenge complexity-introducing requests
+### [Your Core Principle #3]
+[Your principle]
+
+Common architectural principles to consider:
+- **API-First**: Design API before implementation
+- **Test-Driven**: Write tests before code
+- **Domain-Driven**: Organize by business domains, not technical layers
+- **Microservices**: Independent services vs monolith
+- **Serverless**: Event-driven, stateless functions
+- **JAMstack**: Static sites with dynamic APIs
 
 ## Database Patterns
 
-### Multi-Tenant Schema Pattern
+### [Your Database Pattern #1]
 ```sql
--- Every business entity table
-CREATE TABLE service_items (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  business_id UUID NOT NULL REFERENCES businesses(id) ON DELETE CASCADE,
-  -- ... business-specific fields
-  created_at TIMESTAMPTZ DEFAULT now(),
-  updated_at TIMESTAMPTZ DEFAULT now()
-);
+-- Example pattern with actual code
 
--- RLS Policy Template
-CREATE POLICY "Users can access own business data"
-  ON service_items
-  FOR ALL
-  USING (business_id = current_setting('app.current_business_id')::uuid);
+-- Example: Soft delete pattern
+ALTER TABLE users ADD COLUMN deleted_at TIMESTAMP NULL;
+CREATE INDEX idx_users_active ON users(id) WHERE deleted_at IS NULL;
+
+-- Query only active records
+SELECT * FROM users WHERE deleted_at IS NULL;
 ```
 
-### Audit Trail Pattern
-```sql
--- Track all business-critical operations
-CREATE TABLE audit_logs (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  business_id UUID NOT NULL REFERENCES businesses(id),
-  user_id UUID NOT NULL REFERENCES auth.users(id),
-  action TEXT NOT NULL, -- 'create', 'update', 'delete'
-  entity_type TEXT NOT NULL, -- 'job', 'client', 'worker'
-  entity_id UUID NOT NULL,
-  changes JSONB, -- old/new values
-  created_at TIMESTAMPTZ DEFAULT now()
-);
-```
+### [Your Database Pattern #2]
+[Describe when and how to use this pattern]
 
-### Status Workflow Pattern
-```sql
--- Configurable per business type
-CREATE TYPE job_status AS ENUM (
-  'draft',
-  'scheduled',
-  'in_progress',
-  'completed',
-  'cancelled'
-);
+Common database patterns:
+- **Audit Logs**: Track who changed what and when
+- **Soft Deletes**: Mark as deleted instead of removing
+- **UUIDs vs Auto-increment**: Trade-offs for primary keys
+- **JSONB Fields**: When to use vs separate tables
+- **Indexing Strategy**: What columns to index
+- **Migrations**: How you version schema changes
 
--- Different industries have different flows:
--- HVAC: draft → scheduled → in_progress → completed
--- Cleaning: scheduled → in_progress → completed (no draft)
-```
+## Component/Code Patterns
 
-## Component Patterns
-
-### Business Config Adaptation
+### [Your Component Pattern #1]
 ```typescript
-interface BusinessConfig {
-  businessType: 'hvac' | 'cleaning' | 'personal_care';
-  terminology: {
-    serviceItem: 'job' | 'appointment' | 'booking';
-    worker: 'technician' | 'cleaner' | 'stylist';
-    // ... configurable terms
-  };
-  features: {
-    equipmentTracking: boolean;
-    recurringSchedules: boolean;
-    // ... feature toggles
-  };
-}
+// Example of your pattern with actual code
 
-// Components adapt based on config
-function ServiceItemCard({ item, config }: Props) {
-  const itemLabel = config.terminology.serviceItem;
-  // ... render accordingly
-}
-```
+// Example: Result type for error handling
+type Result<T> = 
+  | { success: true; data: T }
+  | { success: false; error: string };
 
-### Mobile Interaction Pattern
-```typescript
-// Touch-optimized list item
-<div
-  className="touch-item" // min-h-[44px] active:bg-gray-100
-  onTouchStart={handleTouchStart}
-  onClick={handleClick}
->
-  {/* Swipe-to-delete gesture */}
-</div>
-
-// Pull-to-refresh pattern
-const [isPulling, setIsPulling] = useState(false);
-// ... touch gesture handling
-```
-
-### Offline-First Pattern
-```typescript
-// Optimistic update with rollback
-const updateServiceItem = async (id: string, updates: Partial<ServiceItem>) => {
-  // 1. Update local state immediately
-  setServiceItem(prev => ({ ...prev, ...updates }));
-  
+async function fetchUser(id: string): Promise<Result<User>> {
   try {
-    // 2. Sync to server
-    await supabase.from('service_items').update(updates).eq('id', id);
+    const response = await api.get(`/users/${id}`);
+    return { success: true, data: response.data };
   } catch (error) {
-    // 3. Rollback on failure
-    setServiceItem(prev => prev); // restore previous state
-    toast.error('Update failed. Check connection.');
-  }
-};
-```
-
-## Authentication Patterns
-
-### Invite-Based Onboarding
-1. Business owner creates invite (email + role)
-2. Edge function sends email via Resend
-3. Recipient clicks link → auto-creates account
-4. User assigned to business with specified role
-5. No manual password creation required
-
-### Role-Based Access Control
-```typescript
-enum UserRole {
-  OWNER = 7,      // Full access
-  ADMIN = 6,      // Manage users, settings
-  MANAGER = 5,    // Assign work, view reports
-  SUPERVISOR = 4, // Oversee workers
-  WORKER = 3,     // Complete assigned work
-  CLIENT = 2,     // View own data
-  USER = 1        // Basic read access
-}
-
-// Enforce at both API and UI level
-if (currentUser.role < UserRole.MANAGER) {
-  throw new Error('Insufficient permissions');
-}
-```
-
-## Code Quality Standards
-
-### TypeScript Strictness
-```typescript
-// ✅ Always type everything
-interface ServiceItem {
-  id: string;
-  business_id: string;
-  status: JobStatus;
-  scheduled_at: Date | null; // explicit null handling
-}
-
-// ❌ Never use any
-const data: any = await fetchData(); // NO!
-
-// ✅ Use unknown and narrow
-const data: unknown = await fetchData();
-if (isServiceItem(data)) {
-  // TypeScript knows the type now
-}
-```
-
-### Error Handling Pattern
-```typescript
-// API calls always return Result type
-type Result<T> = { success: true; data: T } | { success: false; error: string };
-
-async function fetchServiceItems(): Promise<Result<ServiceItem[]>> {
-  try {
-    const { data, error } = await supabase.from('service_items').select();
-    if (error) return { success: false, error: error.message };
-    return { success: true, data };
-  } catch (err) {
-    return { success: false, error: 'Network error' };
+    return { success: false, error: error.message };
   }
 }
 
 // Usage
-const result = await fetchServiceItems();
+const result = await fetchUser('123');
 if (!result.success) {
-  toast.error(result.error);
+  console.error(result.error);
   return;
 }
-// TypeScript knows result.data exists
-const items = result.data;
+// TypeScript knows result.data exists here
+const user = result.data;
 ```
 
-### React Component Standards
+### [Your Component Pattern #2]
+[Describe the pattern]
+
+Common code patterns:
+- **Component Structure**: Functional vs class components
+- **State Management**: Redux, Zustand, Context, props drilling
+- **Error Handling**: Try/catch, Result types, error boundaries
+- **Loading States**: Suspense, skeleton screens, spinners
+- **Form Handling**: Controlled vs uncontrolled, validation
+- **API Calls**: Where they live (components, hooks, services)
+
+## Authentication & Authorization Patterns
+
+### [Your Auth Pattern]
+[Describe how authentication works in your app]
+
+Example:
+> **JWT-based Authentication**
+> - Server issues JWT on login
+> - Client stores in httpOnly cookie (not localStorage)
+> - Include in Authorization header for API calls
+> - Refresh token rotation every 7 days
+> - Role-based access control (RBAC) for permissions
+
+## Code Quality Standards
+
+### TypeScript/Type Safety
 ```typescript
-// ✅ Functional components only
-export function ServiceItemList({ businessId }: Props) {
-  // Custom hooks for complex logic
-  const { items, loading, error } = useServiceItems(businessId);
-  
-  // Early returns for loading/error states
-  if (loading) return <LoadingSpinner />;
-  if (error) return <ErrorMessage error={error} />;
-  
-  // Render data
-  return (
-    <ul>
-      {items.map(item => (
-        <ServiceItemCard key={item.id} item={item} />
-      ))}
-    </ul>
-  );
+// ✅ DO: Explicit types
+interface User {
+  id: string;
+  email: string;
+  name: string | null; // Explicit null handling
 }
 
-// ❌ No class components
-class ServiceItemList extends React.Component {} // NO!
+// ❌ DON'T: Using 'any'
+const data: any = await fetchData(); // Loses all type safety
+
+// ✅ DO: Type narrowing
+const data: unknown = await fetchData();
+if (isUser(data)) {
+  // TypeScript knows it's User here
+  console.log(data.email);
+}
 ```
+
+### [Your Code Standard #2]
+[Your standard]
+
+Common standards:
+- **Naming Conventions**: camelCase, PascalCase, SCREAMING_SNAKE_CASE
+- **File Organization**: Feature folders vs layer folders
+- **Import Order**: External → internal → relative
+- **Comments**: When to write them, JSDoc standards
+- **Error Messages**: User-friendly vs developer-friendly
 
 ## Testing Standards
 
 ### What to Test
-1. **Business logic**: Pure functions with complex logic
-2. **Database operations**: RLS policies, multi-tenant isolation
-3. **Critical workflows**: Auth, payments, invite flow
-4. **Mobile interactions**: Touch gestures, offline behavior
+1. **[Category 1]**: [Description - e.g., "Business logic functions"]
+2. **[Category 2]**: [Description - e.g., "Critical user workflows"]
+3. **[Category 3]**: [Description - e.g., "API integration points"]
 
 ### What NOT to Test
-- Simple getters/setters
-- UI styling (use visual regression instead)
-- Third-party library internals
+1. **[Category 1]**: [Description - e.g., "Third-party library internals"]
+2. **[Category 2]**: [Description - e.g., "Simple getters/setters"]
+3. **[Category 3]**: [Description - e.g., "UI styling (use visual regression)"]
 
-## Performance Patterns
-
-### Lazy Loading
+### Testing Approach
 ```typescript
-// Route-based code splitting
-const ServiceItemsPage = lazy(() => import('./pages/ServiceItems'));
-const ClientsPage = lazy(() => import('./pages/Clients'));
-
-// Suspense boundary
-<Suspense fallback={<LoadingScreen />}>
-  <Routes>
-    <Route path="/items" element={<ServiceItemsPage />} />
-  </Routes>
-</Suspense>
-```
-
-### Database Query Optimization
-```sql
--- Always index foreign keys
-CREATE INDEX idx_service_items_business_id ON service_items(business_id);
-CREATE INDEX idx_service_items_status ON service_items(status);
-
--- Composite indexes for common queries
-CREATE INDEX idx_service_items_business_status 
-  ON service_items(business_id, status);
-```
-
-## Deployment Patterns
-
-### Environment Variables
-```bash
-# Required for all environments
-VITE_SUPABASE_URL=
-VITE_SUPABASE_ANON_KEY=
-VITE_STRIPE_PUBLISHABLE_KEY=
-
-# Backend-only (Edge Functions)
-SUPABASE_SERVICE_ROLE_KEY=
-RESEND_API_KEY=
-STRIPE_SECRET_KEY=
-```
-
-### Edge Function Structure
-```typescript
-// packages/functions/<category>/<function-name>/index.ts
-import { serve } from 'https://deno.land/std@0.177.0/http/server.ts';
-
-serve(async (req) => {
-  // 1. Validate auth
-  // 2. Parse request
-  // 3. Business logic
-  // 4. Return response
+// Example test pattern you use
+describe('User Service', () => {
+  it('should create a new user', async () => {
+    const result = await userService.create({
+      email: 'test@example.com',
+      name: 'Test User'
+    });
+    
+    expect(result.success).toBe(true);
+    if (result.success) {
+      expect(result.data.email).toBe('test@example.com');
+    }
+  });
 });
 ```
 
-## Anti-Patterns (Never Do This)
+## Performance Patterns
 
-❌ **Hardcoded Business Logic**
-```typescript
-if (item.type === 'hvac_job') {} // NO! Use config
-```
+### [Your Performance Pattern]
+[Describe how you optimize performance]
 
-❌ **Any Type Usage**
-```typescript
-const data: any = await fetch(); // NO! Use unknown
-```
+Examples:
+- **Code Splitting**: Route-based chunks with lazy loading
+- **Image Optimization**: WebP format, responsive sizes, lazy loading
+- **Caching Strategy**: Browser cache, CDN cache, API cache
+- **Database Queries**: N+1 problem solutions, eager loading
+- **Bundle Size**: Tree shaking, analyzing with webpack-bundle-analyzer
 
-❌ **Client-Side Security**
-```typescript
-if (user.role === 'ADMIN') showAdminUI(); // UI-only, not security
-```
+## Deployment Patterns
 
-❌ **Skipping Mobile Testing**
-```typescript
-// Works in Chrome DevTools ≠ works on iPhone
-```
+### [Your Deployment Pattern]
+[Describe your deployment process]
 
-❌ **Cross-Tenant Queries**
-```sql
--- Missing business_id filter = security vulnerability
-SELECT * FROM service_items WHERE status = 'completed';
-```
+Example:
+> **CI/CD Pipeline**
+> 1. Push to `main` branch
+> 2. GitHub Actions runs tests
+> 3. If tests pass, build production bundle
+> 4. Deploy to Vercel
+> 5. Run smoke tests on production
+> 6. Send Slack notification
+
+### Environment Strategy
+- **Development**: [How you run locally]
+- **Staging**: [Your pre-production environment]
+- **Production**: [Your live environment]
+
+## Anti-Patterns (What NOT to Do)
+
+Document mistakes you've made or want to avoid:
+
+### ❌ [Anti-Pattern #1]
+**Problem**: [What's wrong with this approach]  
+**Why It's Bad**: [The consequences]  
+**Instead Do**: [The correct approach]
+
+Example:
+> ❌ **Storing Secrets in Frontend Code**
+> **Problem**: API keys committed to git or bundled in client JavaScript
+> **Why It's Bad**: Anyone can steal your keys and rack up charges
+> **Instead Do**: Use environment variables, keep secrets server-side only
+
+### ❌ [Anti-Pattern #2]
+[Your anti-pattern]
+
+Common anti-patterns:
+- **Premature Optimization**: Optimizing before measuring
+- **Over-Engineering**: Building for scale you don't have
+- **God Objects**: Classes/components that do too much
+- **Tight Coupling**: Can't change one thing without breaking others
+- **Magic Numbers**: Hardcoded values without explanation
+- **Copy-Paste Code**: Duplication instead of abstraction
+
+## Decision Framework
+
+When facing architectural decisions, ask:
+
+1. **Does this solve a real problem?** (Not speculative future-proofing)
+2. **Is this the simplest solution?** (YAGNI - You Aren't Gonna Need It)
+3. **Can I change it later?** (Avoid irreversible decisions)
+4. **Does it fit existing patterns?** (Consistency matters)
+5. **Is it documented?** (Future you will forget why)
+
+## Resources & References
+
+Link to external resources that inform your patterns:
+
+- [Resource 1]: [URL and why it's relevant]
+- [Resource 2]: [URL and why it's relevant]
+- [Internal Doc]: [Link to team wiki, ADRs, etc.]
+
+Examples:
+- [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html): Official TS reference
+- [12 Factor App](https://12factor.net/): Principles for SaaS applications
+- [React Docs](https://react.dev/): Official React documentation
+
+---
 
 ## Remember
 
-1. **Mobile-first** means test on actual devices
-2. **Data-first** means define schema before UI
-3. **Multi-tenant** means RLS on every table
-4. **YAGNI** means reject complexity
-5. **Type-safe** means no `any` types
+1. **Patterns emerge from practice** - Don't copy blindly, discover what works for YOU
+2. **Update as you learn** - This file should evolve with your project
+3. **Be specific** - Generic advice helps less than concrete examples
+4. **Question everything** - Including these patterns as your project matures
+5. **Simplicity wins** - The best pattern is often the simplest one that works

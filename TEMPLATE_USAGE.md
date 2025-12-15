@@ -45,6 +45,56 @@ git commit -m "Add AI-assisted development structure (Memory Bank)"
 - ⚠️ `scripts/` only if building mobile apps
 - ⚠️ `package.json` only if starting fresh (don't overwrite existing!)
 
+## 🤖 Choosing Your AI Assistant
+
+Different AI coding assistants use different configuration methods:
+
+| AI Assistant | Configuration Method | File Location |
+|-------------|---------------------|---------------|
+| **GitHub Copilot** | Instruction files | `.github/copilot-instructions.md` |
+| **Cursor AI** | Rules file | `.cursorrules` in project root |
+| **Windsurf** | Rules file | `.windsurfrules` in project root |
+| **Google Antigravity** | Rules files | `.agent/rules/*.md` (workspace) or `~/.gemini/GEMINI.md` (global) |
+| **Cline/Roo-Cline** | Settings | VS Code settings.json |
+| **ChatGPT/Claude (Web)** | Manual paste | Copy to chat or custom instructions |
+
+**For GitHub Copilot** (default):
+- ✅ Use `.github/instructions/copilot-instructions.md` as-is
+- ✅ Copilot automatically reads this file
+
+**For Cursor AI**:
+- ✅ Copy content from `copilot-instructions.md`
+- ✅ Paste into `.cursorrules` file in project root
+- ✅ Cursor automatically reads `.cursorrules`
+
+**For Windsurf**:
+- ✅ Copy content from `copilot-instructions.md`
+- ✅ Paste into `.windsurfrules` file in project root
+
+**For Google Antigravity**:
+- ✅ Copy content from `copilot-instructions.md`
+- ✅ Create `.agent/rules/project-instructions.md` in your workspace
+- ✅ Set rule to "Always On" in Antigravity's Customizations panel
+- ✅ Reference Memory Bank files with @mentions: `@memory-bank/activeContext.md`
+- ✅ Alternatively, use global rules: `~/.gemini/GEMINI.md` (applies to all workspaces)
+
+**For ChatGPT/Claude Web**:
+- ⚠️ No file-based configuration
+- ✅ Copy content from `copilot-instructions.md`
+- ✅ Paste at start of conversation or into Custom Instructions
+- ✅ Manually reference Memory Bank files in prompts
+
+**Memory Bank Works with All AI Assistants!** 
+Just reference files explicitly in prompts:
+```
+"Read memory-bank/activeContext.md and tell me what we should work on next"
+```
+
+For Antigravity, you can use @mentions:
+```
+"Based on @memory-bank/systemPatterns.md, help me implement this feature"
+```
+
 ## 📝 Customizing for Existing Projects
 
 When integrating into an existing codebase, follow this process:

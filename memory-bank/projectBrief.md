@@ -7,58 +7,70 @@
 
 [Describe the core goal of your project in 2-3 sentences. What problem are you solving? Who are you solving it for?]
 
+Example:
+> "Build a task management app for remote teams that prioritizes async communication and reduces meeting overhead. Helps distributed teams stay coordinated without constant video calls."
+
 ## Non-Negotiable Requirements
 
-### 1. Production Quality Preservation
-- All extracted components MUST maintain ScheduleBoard v2's production-ready quality
-- Mobile-first responsive design is mandatory
-- Touch interactions must be preserved and optimized
-- Offline-capable core functionality required
+### 1. [Your Requirement Category]
+- [Specific requirement 1]
+- [Specific requirement 2]
+- [Specific requirement 3]
 
-### 2. Multi-Business Type Flexibility
-- Template must support: HVAC, plumbing, cleaning, personal care, general service businesses
-- Components adapt terminology and workflows per business type
-- Configurable feature toggles for industry-specific requirements
-- No hard-coded business logic
+### 2. [Your Requirement Category]
+- [Specific requirement 1]
+- [Specific requirement 2]
 
-### 3. Instruction-Driven Architecture
-- `.github/instructions/` contains structured prompt files
-- Memory Bank pattern for persistent context across sessions
-- No code generator CLI - Copilot executes instructions directly
-- Documentation-first approach with clear implementation patterns
+### 3. [Your Requirement Category]
+- [Specific requirement 1]
+- [Specific requirement 2]
 
-### 4. Technology Stack (Non-Negotiable)
-- **Frontend**: React 18 + TypeScript + Vite
-- **Backend**: Supabase (PostgreSQL + Edge Functions + Auth)
-- **Mobile**: Capacitor (native iOS/Android compilation)
-- **UI**: Tailwind CSS + shadcn/ui
-- **Email**: Resend
-- **Payments**: Stripe
+Examples of requirement categories:
+- **Performance**: Page load < 2s, handles 10K concurrent users
+- **Security**: SOC 2 compliance, end-to-end encryption
+- **Platform**: Must work on iOS, Android, and web
+- **Integration**: Must integrate with Slack, Google Calendar
+- **Scalability**: Support 100K users from day one
 
 ## Success Criteria
 
-1. **Speed**: New business app setup in < 1 hour
-2. **Quality**: Zero mobile compliance issues on iOS/Android
-3. **Flexibility**: Works across 5+ different service business types
-4. **Maintainability**: Clear instructions, no "magic" generation
-5. **Production-Ready**: Auth, payments, email, database from day one
+Define measurable goals:
+
+1. **[Metric 1]**: [Target - e.g., "Launch MVP in 3 months"]
+2. **[Metric 2]**: [Target - e.g., "Onboard 100 beta users"]
+3. **[Metric 3]**: [Target - e.g., "95% uptime SLA"]
+4. **[Metric 4]**: [Target - e.g., "< 5% churn rate"]
+5. **[Metric 5]**: [Target - e.g., "4.5+ star app rating"]
 
 ## What This Project IS NOT
 
-- ❌ A no-code platform
-- ❌ A universal framework for all app types
-- ❌ A code generator with complex CLI
-- ❌ A learning/tutorial project
+- ❌ [What you're NOT building]
+- ❌ [Scope exclusion]
+- ❌ [Anti-pattern to avoid]
+
+Examples:
+- ❌ An enterprise platform (focus on SMBs)
+- ❌ A social network (focus on productivity)
+- ❌ A marketplace (direct sales only)
 
 ## What This Project IS
 
-- ✅ A battle-tested architecture template
-- ✅ An instruction-driven Copilot workflow
-- ✅ A mobile-first production foundation
-- ✅ A personal business accelerator
+- ✅ [What you ARE building]
+- ✅ [Core value proposition]
+- ✅ [Key differentiator]
+
+Examples:
+- ✅ A focused tool for specific use case
+- ✅ A mobile-first experience
+- ✅ An affordable alternative to [competitor]
 
 ## Business Context
 
-**Target User**: Solo entrepreneur (me) building multiple service business applications  
-**Use Case**: Rapidly spin up production-quality mobile apps for different business ideas  
-**Priority**: Speed + Quality + Maintainability over configurability
+**Target User**: [Who is your primary user?]  
+**Use Case**: [What will they use this for?]  
+**Priority**: [What matters most? Speed? Quality? Cost?]
+
+Example:
+> **Target User**: Small business owners (1-10 employees)  
+> **Use Case**: Manage customer relationships and track sales pipeline  
+> **Priority**: Ease of use over power features

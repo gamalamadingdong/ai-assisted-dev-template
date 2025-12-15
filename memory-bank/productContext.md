@@ -5,70 +5,105 @@
 ## User Problems Being Solved
 
 ### Primary Pain Point
-**"[State the main problem in user's words]"**
-- [Specific pain point 1]
-- [Specific pain point 2]
-- [Specific pain point 3]
-- [Impact on users]
+**"[State the main problem in user's own words - use quotes from interviews/research]"**
+
+Describe the problem:
+- [What triggers this pain point?]
+- [How do users currently work around it?]
+- [What does this cost them (time/money/frustration)?]
+- [Why haven't existing solutions solved this?]
+
+Example:
+> **"I spend 3 hours every week copying data between spreadsheets because our tools don't talk to each other"**
+> - Triggered every Monday when compiling weekly reports
+> - Currently use manual copy/paste and risk errors
+> - Costs 150+ hours per year of manual work
+> - Existing tools are enterprise-only or too complex
 
 ### Secondary Pain Points
-1. **Multi-tenant complexity**: Business isolation, RLS policies, role management
-2. **Mobile-first requirement**: Touch interactions, offline support, responsive design
-3. **Service business patterns**: Jobs, clients, workers, scheduling are common across industries
-4. **Production infrastructure**: Email, payments, hosting, monitoring needed day one
+1. **[Pain Point 2]**: [Brief description and impact]
+2. **[Pain Point 3]**: [Brief description and impact]
+3. **[Pain Point 4]**: [Brief description and impact]
 
 ## Business Model
 
-**Personal Use Template** (not a product for sale)
-- Used by solo entrepreneur to build multiple business ventures
-- Value measured in time-to-market and application quality
-- Success = launching 3+ different service businesses in 2026
+**[How will this make money? Or is it personal/open source?]**
 
-## Target Business Types
+- [Revenue stream 1 - e.g., Subscription ($X/month)]
+- [Revenue stream 2 - e.g., Usage-based pricing]
+- [Revenue stream 3 - e.g., One-time purchase]
+- [Customer acquisition strategy]
+- [Target metrics - e.g., 1000 users by Q2 2026]
 
-### High Priority
-1. **HVAC Service** (like ScheduleBoard) - jobs, technicians, equipment tracking
-2. **Cleaning Service** - appointments, recurring schedules, teams
-3. **Personal Care** (salon, barber) - appointments, staff schedules, packages
+Examples:
+- **B2C SaaS**: $9/month subscription, freemium model, 100K free users → 5K paid
+- **B2B SaaS**: $49/user/month, annual contracts, enterprise tier at $499/month
+- **Marketplace**: 15% transaction fee, sellers and buyers both on platform
+- **Personal Project**: No monetization, building for own use and learning
+- **Open Source**: Free software, monetize via consulting/support
 
-### Medium Priority
-4. **Plumbing Service** - emergency calls, job tracking, inventory
-5. **Landscaping** - seasonal contracts, crew management, equipment
-6. **General Contracting** - project management, subcontractors, materials
+## Target Users
+
+### Primary User Persona
+**[Name/Role]**: [e.g., "Sarah, Small Business Owner"]
+- **Demographics**: [Age, location, industry, company size]
+- **Goals**: [What they want to achieve]
+- **Frustrations**: [What blocks them today]
+- **Tech Comfort**: [Novice | Intermediate | Expert]
+
+### Secondary User Persona (if applicable)
+**[Name/Role]**: [e.g., "Mike, Team Member"]
+- **Demographics**: [Relevant details]
+- **Goals**: [What they want to achieve]
+- **Relationship to primary**: [How they interact]
 
 ## User Experience Goals
 
-### Setup Experience (Developer/Founder)
-1. Clone template → 2 minutes
-2. Configure business type → 5 minutes
-3. Deploy to production → 15 minutes
-4. First user can sign up → 30 minutes total
+### Onboarding
+1. [First step - e.g., "Sign up with Google in 10 seconds"]
+2. [Second step - e.g., "Import existing data from CSV"]
+3. [Third step - e.g., "Complete first task in 2 minutes"]
+4. [Success metric - e.g., "80% of users complete onboarding"]
 
-### End User Experience (Business Owner)
-1. **Mobile-first**: Works flawlessly on iPhone/Android
-2. **Fast onboarding**: Invite link → account → first job in < 5 minutes
-3. **Offline-capable**: Core features work without internet
-4. **Professional UI**: Looks like a $50K custom app, not a DIY project
+### Core Experience
+1. **[Key UX Goal 1]**: [Description - e.g., "Mobile-first design"]
+2. **[Key UX Goal 2]**: [Description - e.g., "Works offline"]
+3. **[Key UX Goal 3]**: [Description - e.g., "One-click actions"]
+4. **[Key UX Goal 4]**: [Description - e.g., "Dark mode support"]
 
-## Competitive Advantage
+## Competitive Landscape
 
-**Why Not Use [ServiceTitan/Jobber/Housecall Pro]?**
-- ✅ Full control over features and roadmap
-- ✅ No monthly SaaS fees per business
-- ✅ Custom integrations and workflows
-- ✅ Learn once, apply to multiple business types
-- ✅ Own the data and infrastructure
+### Direct Competitors
+1. **[Competitor 1]**: [Their strength] - but [their weakness]
+2. **[Competitor 2]**: [Their strength] - but [their weakness]
+3. **[Competitor 3]**: [Their strength] - but [their weakness]
 
-**Why Not Build Each App from Scratch?**
-- ✅ Proven architecture reduces bugs
-- ✅ Mobile compliance already solved
-- ✅ Auth/payments/email infrastructure reusable
-- ✅ Focus on business logic, not plumbing
+### Your Advantage
+**Why choose your product?**
+- ✅ [Differentiator 1 - e.g., "10x cheaper"]
+- ✅ [Differentiator 2 - e.g., "Works offline"]
+- ✅ [Differentiator 3 - e.g., "No learning curve"]
+- ✅ [Differentiator 4 - e.g., "Open source"]
 
-## Success Metrics (2026)
+**Why NOT use existing alternatives?**
+- ❌ [Problem with alternative 1]
+- ❌ [Problem with alternative 2]
+- ❌ [Problem with alternative 3]
 
-1. **3+ Apps Launched**: Different business types, all production-ready
-2. **Setup Time < 1 Hour**: From clone to deployed app
-3. **Zero Mobile Issues**: Pass iOS/Android review first try
-4. **High User Satisfaction**: Business owners love the UX
-5. **Code Quality Maintained**: Easy to update and enhance
+## Success Metrics
+
+### Year 1 Goals
+1. **[Metric 1]**: [Target - e.g., "Launch MVP"]
+2. **[Metric 2]**: [Target - e.g., "100 beta users"]
+3. **[Metric 3]**: [Target - e.g., "$1K MRR"]
+4. **[Metric 4]**: [Target - e.g., "4.5+ star rating"]
+
+### Long-term Vision (3-5 years)
+1. **[Vision Goal 1]**: [Aspirational target]
+2. **[Vision Goal 2]**: [Aspirational target]
+3. **[Vision Goal 3]**: [Aspirational target]
+
+Example:
+> Year 1: 1,000 active users, $5K MRR  
+> Year 3: 50,000 active users, $100K MRR, break even  
+> Year 5: 500,000 active users, $1M+ ARR, profitable
