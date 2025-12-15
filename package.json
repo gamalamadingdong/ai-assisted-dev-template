@@ -1,13 +1,13 @@
 {
   "name": "ai-assisted-dev-template",
   "version": "1.0.0",
-  "description": "AI-assisted development template with Memory Bank pattern for persistent context",
+  "description": "AI-assisted development template with Working Memory pattern for persistent context",
   "private": true,
   "type": "module",
   "keywords": [
     "ai-assisted",
     "github-copilot",
-    "memory-bank",
+    "working-memoryory",
     "template",
     "prompt-engineering"
   ],

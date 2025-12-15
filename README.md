@@ -7,7 +7,7 @@
 An **AI-assisted development framework** that provides structure, patterns, and persistent context to maximize the effectiveness of AI coding assistants.
 
 **What you get:**
-- 🧠 **Memory Bank Pattern** - File-based persistent context across AI sessions
+- 🧠 **Working Memory Pattern** - File-based persistent context across AI sessions
 - 📋 **Structured Instructions** - Clear guidance for AI assistants on architecture and patterns
 - 🎯 **"Plan & Act" Workflow** - Prevent AI drift by planning before implementation
 - 📚 **Decision Tracking** - ADRs (Architectural Decision Records) document the "why"
@@ -22,17 +22,17 @@ An **AI-assisted development framework** that provides structure, patterns, and 
 
 **Philosophy:** AI assistants are stateless and forget context between sessions. This template solves that problem with structured prompt engineering and file-based memory.
 
-## 🧠 Core Concept: The Memory Bank
+## 🧠 Core Concept: The Working Memory
 
 AI assistants (like GitHub Copilot) are **stateless** - they reset their memory with every new chat session. For long-term projects, this creates a critical problem:
 
-❌ **Without Memory Bank:**
+❌ **Without Working Memory:**
 - AI asks the same questions repeatedly
 - Forgets architectural decisions
 - Loses context on what's been implemented
 - Drifts from original vision over time
 
-✅ **With Memory Bank:**
+✅ **With Working Memory:**
 - AI reads project context at session start
 - Maintains consistent architectural patterns
 - Tracks decisions and implementations
@@ -40,10 +40,10 @@ AI assistants (like GitHub Copilot) are **stateless** - they reset their memory 
 
 ### How It Works
 
-The Memory Bank is a set of **markdown files** that serve as the AI's "external hard drive":
+The Working Memory is a set of **markdown files** that serve as the AI's "external hard drive":
 
 ```
-memory-bank/
+working-memory/
 ├── projectBrief.md          # Core mission, non-negotiables
 ├── productContext.md        # User problems, business model
 ├── activeContext.md         # Current state (updated frequently)
@@ -78,11 +78,11 @@ Located in `.github/instructions/copilot-instructions.md`, this file provides:
 Prevents "agentic drift" where AI creates working code that diverges from intent:
 
 1. **Analyze Request**: Understand business context and requirements
-2. **Read Memory Bank**: Check current state in `activeContext.md`
+2. **Read Working Memory**: Check current state in `activeContext.md`
 3. **Formulate Plan**: Output step-by-step implementation plan
 4. **Get Confirmation**: Wait for approval before coding
 5. **Execute**: Implement according to approved plan
-6. **Document**: Update Memory Bank files
+6. **Document**: Update Working Memory files
 
 ## 🚀 Quick Start
 
@@ -100,9 +100,9 @@ git add .
 git commit -m "Initial commit from AI-assisted template"
 ```
 
-### 2. Customize Memory Bank
+### 2. Customize Working Memory
 
-Update the template files in `memory-bank/` with your project's context:
+Update the template files in `working-memory/` with your project's context:
 
 **Required Updates:**
 - `projectBrief.md` - Define your mission and non-negotiables
@@ -134,14 +134,14 @@ mobile: [your mobile choice, if applicable]
 
 Open your project in VS Code with GitHub Copilot and say:
 
-> "Read the Memory Bank files and help me set up [your project type]. Let's start by reviewing the project brief and creating an implementation plan."
+> "Read the Working Memory files and help me set up [your project type]. Let's start by reviewing the project brief and creating an implementation plan."
 
 The AI will:
-- ✅ Read `memory-bank/activeContext.md` to understand current state
+- ✅ Read `working-memory/activeContext.md` to understand current state
 - ✅ Review your project requirements
 - ✅ Propose an implementation plan
 - ✅ Wait for your approval before coding
-- ✅ Update Memory Bank files as work progresses
+- ✅ Update Working Memory files as work progresses
 
 ## 📖 Using This Template
 
@@ -181,7 +181,7 @@ This template is **framework-agnostic**. Examples of what you can build:
    ```
 
 3. **Start AI Session:**
-   > "I need to set up the database schema for a project management tool. Based on the Memory Bank, help me design tables for projects, tasks, and team members with proper relationships."
+   > "I need to set up the database schema for a project management tool. Based on the Working Memory, help me design tables for projects, tasks, and team members with proper relationships."
 
 ### Example: Starting a Mobile App
 
@@ -205,7 +205,7 @@ This template is **framework-agnostic**. Examples of what you can build:
    ```
 
 3. **Start AI Session:**
-   > "Based on the Memory Bank, help me set up the React Native project structure with offline-first architecture for a fitness tracking app."
+   > "Based on the Working Memory, help me set up the React Native project structure with offline-first architecture for a fitness tracking app."
 
 ## 🛠️ What's Included
 
@@ -215,7 +215,7 @@ This template is **framework-agnostic**. Examples of what you can build:
   instructions/
     copilot-instructions.md     # AI assistant configuration (customize for your project)
 
-memory-bank/
+working-memory/
   projectBrief.md               # Template - define your mission
   productContext.md             # Template - define user problems
   activeContext.md              # Template - track current state
@@ -264,10 +264,10 @@ Developer → Prompt AI → Code → Forget Context → Repeat
 (Context lost between sessions)
 ```
 
-**AI-Assisted Development With Memory Bank:**
+**AI-Assisted Development With Working Memory:**
 ```
-Developer → Update Memory Bank → Prompt AI → AI Reads Context →
-Code with Consistency → Update Memory Bank → Maintain Context
+Developer → Update Working Memory → Prompt AI → AI Reads Context →
+Code with Consistency → Update Working Memory → Maintain Context
 (Persistent context across sessions)
 ```
 
@@ -287,7 +287,7 @@ Code with Consistency → Update Memory Bank → Maintain Context
 
 ```markdown
 1. Open new Copilot chat
-2. Say: "Read memory-bank/activeContext.md and help me implement [feature]"
+2. Say: "Read working-memory/activeContext.md and help me implement [feature]"
 3. AI reads context and proposes plan
 4. Review and approve plan
 5. AI implements according to plan
@@ -298,7 +298,7 @@ Code with Consistency → Update Memory Bank → Maintain Context
 
 ```markdown
 1. Discuss options with AI
-2. Document decision in memory-bank/decisionLog.md as ADR
+2. Document decision in working-memory/decisionLog.md as ADR
 3. Include: Context, Decision, Rationale, Consequences, Alternatives
 4. Update systemPatterns.md with new pattern (if applicable)
 ```
@@ -310,7 +310,7 @@ If chat context becomes too large:
 1. Save important decisions to decisionLog.md
 2. Update activeContext.md with current state
 3. Start fresh chat
-4. Say: "Read memory-bank files and continue from where we left off"
+4. Say: "Read working-memory files and continue from where we left off"
 ```
 
 ### Session-to-Session Workflow
@@ -324,7 +324,7 @@ If chat context becomes too large:
 2. If milestone reached, update implementationLog.md
 
 **Start of Session:**
-1. Say: "Read memory-bank/activeContext.md and summarize current state"
+1. Say: "Read working-memory/activeContext.md and summarize current state"
 2. AI reads and provides context
 3. Continue working with full context restored
 ```
@@ -333,7 +333,7 @@ If chat context becomes too large:
 
 ### For Your Specific Project
 
-1. **Fill Out Memory Bank Templates**: Replace placeholders with your actual project details
+1. **Fill Out Working Memory Templates**: Replace placeholders with your actual project details
 2. **Customize copilot-instructions.md**: Add project-specific patterns and anti-patterns
 3. **Add Project Files**: Create your actual codebase structure
 4. **Update This README**: Replace generic descriptions with your project specifics
@@ -341,16 +341,16 @@ If chat context becomes too large:
 ### Adapting for Different Team Sizes
 
 **Solo Developer:**
-- Keep all Memory Bank files simple and personal
+- Keep all Working Memory files simple and personal
 - Focus on tracking your own thought process
 
 **Small Team (2-5):**
-- Use Memory Bank as shared team context
+- Use Working Memory as shared team context
 - Require all team members to update activeContext.md
 - Review decisionLog.md together during standups
 
 **Larger Team:**
-- Assign Memory Bank ownership/maintenance
+- Assign Working Memory ownership/maintenance
 - Create team-specific systemPatterns.md sections
 - Use implementationLog.md for sprint retrospectives
 
@@ -358,7 +358,7 @@ If chat context becomes too large:
 
 ### Understanding ADRs (Architectural Decision Records)
 
-See `memory-bank/decisionLog.md` for template and examples. Key elements:
+See `working-memory/decisionLog.md` for template and examples. Key elements:
 
 - **Context**: What situation led to this decision?
 - **Decision**: What did we decide?
@@ -366,7 +366,7 @@ See `memory-bank/decisionLog.md` for template and examples. Key elements:
 - **Consequences**: What are the trade-offs?
 - **Alternatives**: What else did we consider?
 
-### Memory Bank File Purposes
+### Working Memory File Purposes
 
 | File | Purpose | Update Frequency |
 |------|---------|------------------|
@@ -394,7 +394,7 @@ MIT License - Use freely for any project
 
 ## 🙏 Credits
 
-Memory Bank pattern inspired by ["Persistent Context Architecture" for AI assistants](https://example.com).
+Working Memory pattern inspired by ["Persistent Context Architecture" for AI assistants](https://example.com).
 
 Built to solve the stateless nature of LLMs in long-term software projects.
 
@@ -403,7 +403,7 @@ Built to solve the stateless nature of LLMs in long-term software projects.
 **Ready to start?**
 
 1. Clone this template
-2. Customize `memory-bank/` files for your project
+2. Customize `working-memory/` files for your project
 3. Update `.github/instructions/copilot-instructions.md`
 4. Start your first AI-assisted session!
 

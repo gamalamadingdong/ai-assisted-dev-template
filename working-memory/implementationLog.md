@@ -149,8 +149,8 @@
 **Status**: 🚧 In Progress
 
 ### What's Being Built
-1. **Memory Bank Pattern**
-   - `memory-bank/` directory structure
+1. **Working Memory Pattern**
+   - `working-memoryory/` directory structure
    - Persistent context files (projectBrief, activeContext, etc.)
    - Integration into copilot-instructions.md
 
@@ -166,7 +166,7 @@
    - Focus on instruction-driven workflow
 
 ### What's Working
-- ✅ Memory Bank pattern solves stateless LLM problem
+- ✅ Working Memory pattern solves stateless LLM problem
 - ✅ Copilot-instructions.md updated with workflow
 - ✅ Clear plan for instruction structure
 
@@ -180,7 +180,7 @@
 2. Write first setup guide (00-project-init.md)
 3. Document database patterns
 4. Create business type decision tree
-5. Fill out remaining Memory Bank files
+5. Fill out remaining Working Memory files
 
 ---
 
@@ -207,7 +207,7 @@
    - Provide usage examples
 
 ### Dependencies
-- Need Memory Bank and instruction architecture complete first
+- Need Working Memory and instruction architecture complete first
 - ScheduleBoard v2 production release should be stable
 
 ---
@@ -251,14 +251,14 @@
 - **Auth System**: ~3 days including edge functions
 - **Notification System**: ~2 days with orchestrator pattern
 - **Subscription System**: ~4 days including Stripe integration
-- **Memory Bank Setup**: ~1 day to establish pattern
+- **Working Memory Setup**: ~1 day to establish pattern
 
 ### What Accelerates Development
 1. ✅ Clear database schema defined upfront (data-first design)
 2. ✅ Edge Functions for business logic (keeps frontend simple)
 3. ✅ TypeScript strict mode (catches bugs early)
 4. ✅ Supabase RLS (security built-in)
-5. ✅ Memory Bank (persistent context across sessions)
+5. ✅ Working Memory (persistent context across sessions)
 
 ### What Slows Development
 1. ⚠️ Over-engineering abstractions before needed (YAGNI violation)

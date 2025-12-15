@@ -2,7 +2,7 @@
 
 **Copy and paste this entire file into your AI assistant to get started!**
 
-This prompt will guide you through filling out all the Memory Bank files with your project's specific details.
+This prompt will guide you through filling out all the Working Memory files with your project's specific details.
 
 ---
 
@@ -20,9 +20,9 @@ IMPORTANT: Before asking me questions, please search through my codebase to disc
 
 After searching, provide suggestions based on what you found, then ask me to confirm or correct.
 
-Please help me fill out the Memory Bank files by going through each file step by step:
+Please help me fill out the Working Memory files by going through each file step by step:
 
-### 1. Project Brief (memory-bank/projectBrief.md)
+### 1. Project Brief (working-memory/projectBrief.md)
 
 FIRST: Search my codebase for clues about:
 - Project name and description (README.md, package.json)
@@ -36,7 +36,7 @@ THEN: Based on what you found, suggest answers and ask me to confirm/correct:
 - What is this project NOT? (Scope exclusions)
 - Who is the target user and what's the priority? (Speed vs Quality vs Cost)
 
-### 2. Product Context (memory-bank/productContext.md)
+### 2. Product Context (working-memory/productContext.md)
 
 FIRST: Search my codebase for clues about:
 - User-facing features or UI components
@@ -53,7 +53,7 @@ THEN: Based on what you found, suggest answers and ask me to confirm/correct:
 - Who are my competitors and what's my advantage?
 - What are my Year 1 and long-term success metrics?
 
-### 3. Tech Context (memory-bank/techContext.md)
+### 3. Tech Context (working-memory/techContext.md)
 
 FIRST: Search my codebase for:
 - package.json, package-lock.json (Node.js dependencies and versions)
@@ -76,7 +76,7 @@ THEN: Based on what you found, provide a complete tech stack summary and ask me 
 - What are my environment variables?
 - Any known third-party service limits I should be aware of?
 
-### 4. System Patterns (memory-bank/systemPatterns.md)
+### 4. System Patterns (working-memory/systemPatterns.md)
 
 FIRST: Search my codebase for patterns by examining:
 - 3-5 representative source files
@@ -96,7 +96,7 @@ THEN: Based on what you found, document the patterns and ask me to confirm/corre
 
 If this is a fresh project with no code yet, just tell me we'll fill this out as patterns emerge during development.
 
-### 5. Active Context (memory-bank/activeContext.md)
+### 5. Active Context (working-memory/activeContext.md)
 
 FIRST: Search my codebase to understand current state:
 - What files and features already exist?
@@ -117,7 +117,7 @@ For each section:
 2. Present what you discovered with specific file references
 3. Provide suggested answers based on your findings
 4. Ask me to confirm, correct, or elaborate
-5. Write the properly formatted content to the appropriate Memory Bank file
+5. Write the properly formatted content to the appropriate Working Memory file
 6. Move to the next section
 7. At the end, give me a summary of what we've documented
 
@@ -129,18 +129,18 @@ Let's start by searching the codebase for Project Brief information!
 ## What This Does
 
 This prompt will:
-1. ✅ Walk you through each Memory Bank file systematically
+1. ✅ Walk you through each Working Memory file systematically
 2. ✅ Ask targeted questions to extract the right information
 3. ✅ Write properly formatted content to each file
 4. ✅ Ensure nothing is missed
-5. ✅ Give you a complete, customized Memory Bank for your project
+5. ✅ Give you a complete, customized Working Memory for your project
 
 ## After Completion
 
-Once your Memory Bank is filled out:
+Once your Working Memory is filled out:
 1. Review each file to make sure the AI captured everything correctly
 2. Make any manual adjustments needed
-3. Start your first development session with: `"Read memory-bank/activeContext.md and let's start building!"`
+3. Start your first development session with: `"Read working-memory/activeContext.md and let's start building!"`
 
 ---
 

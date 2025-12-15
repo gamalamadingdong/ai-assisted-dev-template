@@ -48,11 +48,11 @@ Use structured instruction files (`.github/instructions/`) with GitHub Copilot t
 ### Implementation Notes
 - Keep `generator/` directory as reference but deprecate
 - Create comprehensive `.github/instructions/` structure
-- Use Memory Bank pattern for persistent context
+- Use Working Memory pattern for persistent context
 
 ---
 
-## ADR-002: Memory Bank Pattern for Persistent Context
+## ADR-002: Working Memory Pattern for Persistent Context
 
 **Date**: December 15, 2025  
 **Status**: Accepted  
@@ -62,7 +62,7 @@ Use structured instruction files (`.github/instructions/`) with GitHub Copilot t
 LLMs are stateless - they reset memory with every new session. For long-term projects, this "amnesia" is a critical bottleneck. Developers lose context when starting new chat sessions.
 
 ### Decision
-Implement a "Memory Bank" - file-system-based context management using structured markdown files in `memory-bank/` directory.
+Implement a "Working Memory" - file-system-based context management using structured markdown files iworking-memorymemory/` directory.
 
 ### Rationale
 1. **Persistence**: Files maintain state across chat sessions

@@ -26,22 +26,22 @@ cd my-existing-project
 
 # Copy the template structure
 # Option 1: Manual copy
-mkdir -p .github/instructions memory-bank
+mkdir -p .github/instructions working-memory
 cp /path/to/template/.github/instructions/copilot-instructions.md .github/instructions/
-cp -r /path/to/template/memory-bank/* memory-bank/
+cp -r /path/to/template/working-memory/* working-memory/
 
 # Option 2: Download specific files
 curl -O <raw-github-url>/copilot-instructions.md
 # ... etc
 
 # Commit the new structure
-git add .github/instructions memory-bank
-git commit -m "Add AI-assisted development structure (Memory Bank)"
+git add .github/instructions working-memory
+git commit -m "Add AI-assisted development structure (Working Memory)"
 ```
 
 **What to copy for existing projects:**
 - ✅ `.github/instructions/copilot-instructions.md` (MUST HAVE)
-- ✅ `memory-bank/*.md` files (MUST HAVE)
+- ✅ `working-memory/*.md` files (MUST HAVE)
 - ⚠️ `scripts/` only if building mobile apps
 - ⚠️ `package.json` only if starting fresh (don't overwrite existing!)
 
@@ -75,24 +75,24 @@ Different AI coding assistants use different configuration methods:
 - ✅ Copy content from `copilot-instructions.md`
 - ✅ Create `.agent/rules/project-instructions.md` in your workspace
 - ✅ Set rule to "Always On" in Antigravity's Customizations panel
-- ✅ Reference Memory Bank files with @mentions: `@memory-bank/activeContext.md`
+- ✅ Reference Working Memory files with @mentions: `@working-memory/activeContext.md`
 - ✅ Alternatively, use global rules: `~/.gemini/GEMINI.md` (applies to all workspaces)
 
 **For ChatGPT/Claude Web**:
 - ⚠️ No file-based configuration
 - ✅ Copy content from `copilot-instructions.md`
 - ✅ Paste at start of conversation or into Custom Instructions
-- ✅ Manually reference Memory Bank files in prompts
+- ✅ Manually reference Working Memory files in prompts
 
-**Memory Bank Works with All AI Assistants!** 
+**Working Memory Works with All AI Assistants!** 
 Just reference files explicitly in prompts:
 ```
-"Read memory-bank/activeContext.md and tell me what we should work on next"
+"Read working-memory/activeContext.md and tell me what we should work on next"
 ```
 
 For Antigravity, you can use @mentions:
 ```
-"Based on @memory-bank/systemPatterns.md, help me implement this feature"
+"Based on @working-memory/systemPatterns.md, help me implement this feature"
 ```
 
 ## 📝 Customizing for Existing Projects
@@ -111,7 +111,7 @@ When integrating into an existing codebase, follow this process:
 
 #### `activeContext.md` - Start Here! ⭐
 ```markdown
-**Current Session Focus**: Integrating Memory Bank into existing project
+**Current Session Focus**: Integrating Working Memory into existing project
 
 ## Current State Summary
 
@@ -185,17 +185,17 @@ Add project-specific context:
 
 Open a new Copilot chat and say:
 ```
-"Read memory-bank/activeContext.md and summarize the current state of this project. 
+"Read working-memory/activeContext.md and summarize the current state of this project. 
 Then read systemPatterns.md and tell me what architectural patterns I should follow."
 ```
 
 **Expected result**: AI should accurately describe your project and patterns.
 
-**If AI is confused**: Your Memory Bank files need more specifics.
+**If AI is confused**: Your Working Memory files need more specifics.
 
-## 🧠 Memory Bank Workflow (All Projects)
+## 🧠 Working Memory Workflow (All Projects)
 
-### 2. Customize Memory Bank (Required!)
+### 2. Customize Working Memory (Required!)
 
 #### `projectBrief.md` ⭐ CRITICAL
 - Define your core mission
@@ -250,27 +250,27 @@ Replace ALL placeholder sections marked with:
 Open VS Code with GitHub Copilot and say:
 
 ```
-"Read memory-bank/activeContext.md and help me set up [your project]. 
+"Read working-memory/activeContext.md and help me set up [your project]. 
 Let's start by reviewing the project brief and creating an implementation plan."
 ```
 
-## 🧠 Memory Bank Workflow
+## 🧠 Working Memory Workflow
 
 ### Every Session START:
 ```
-AI reads: memory-bank/activeContext.md
+AI reads: working-memory/activeContext.md
 You say: "What's the current state? What should we work on next?"
 ```
 
 ### During Development:
 ```
-AI cross-references: memory-bank/systemPatterns.md
+AI cross-references: working-memory/systemPatterns.md
 Before implementing: AI proposes plan → you approve
 ```
 
 ### Every Session END:
 ```
-AI updates: memory-bank/activeContext.md
+AI updates: working-memory/activeContext.md
 - What was completed
 - What's next
 - Any blockers
@@ -278,7 +278,7 @@ AI updates: memory-bank/activeContext.md
 
 ### When Milestone Reached:
 ```
-AI updates: memory-bank/implementationLog.md
+AI updates: working-memory/implementationLog.md
 - Document what was built
 - Note what worked/failed
 ```
@@ -339,7 +339,7 @@ If chat history is getting too long:
 
 3. **Restore Context**:
    ```
-   "Read memory-bank files and summarize where we are"
+   "Read working-memory files and summarize where we are"
    ```
 
 ## 🛠️ Optional: Mobile Build Scripts
@@ -365,11 +365,11 @@ These scripts automatically update build numbers in your Xcode/Android Studio pr
 - [ ] Defined patterns in `systemPatterns.md`
 - [ ] Specified tech stack in `techContext.md`
 - [ ] Customized `copilot-instructions.md` placeholders
-- [ ] Tested AI assistant reads Memory Bank correctly
+- [ ] Tested AI assistant reads Working Memory correctly
 
 ## 🎓 Tips for Success
 
-### 1. Be Specific in Memory Bank
+### 1. Be Specific in Working Memory
 ❌ Bad: "Build a web app"  
 ✅ Good: "Build a B2B SaaS project management tool for design agencies with real-time collaboration"
 
@@ -380,7 +380,7 @@ This is your source of truth. Update it EVERY session.
 Document the "why" not just the "what". Future you will thank you.
 
 ### 4. Start New Chats When Needed
-Don't let context get bloated. Memory Bank maintains continuity.
+Don't let context get bloated. Working Memory maintains continuity.
 
 ### 5. Challenge AI Complexity
 If AI suggests over-engineering, say: "That seems too complex. What's a simpler approach?"
@@ -388,25 +388,25 @@ If AI suggests over-engineering, say: "That seems too complex. What's a simpler 
 ## 🤝 Working with a Team
 
 ### Solo Developer
-- Keep Memory Bank personal and informal
+- Keep Working Memory personal and informal
 - Update as you think through problems
 
 ### Small Team (2-5)
-- Treat Memory Bank as shared team context
+- Treat Working Memory as shared team context
 - Require everyone to read activeContext.md daily
 - Review decisionLog.md together
 
 ### Larger Team
-- Assign Memory Bank maintenance to tech lead
+- Assign Working Memory maintenance to tech lead
 - Create team-specific sections in systemPatterns.md
 - Use implementationLog.md for sprint retrospectives
 
 ## 📚 Additional Resources
 
-- [Memory Bank Pattern Explanation](./README.md#core-concept-the-memory-bank)
+- [Working Memory Pattern Explanation](./README.md#core-concept-the-working-memory)
 - [Plan & Act Workflow](./README.md#the-plan--act-workflow)
 - [Best Practices](./README.md#best-practices)
 
 ---
 
-**Ready to build?** Update those Memory Bank files and start your first AI-assisted session! 🚀
+**Ready to build?** Update those Working Memory files and start your first AI-assisted session! 🚀
