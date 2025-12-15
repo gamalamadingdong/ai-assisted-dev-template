@@ -1,507 +1,410 @@
-# SGE Starter Template
+# AI-Assisted Development Template
 
-> **Infrastructure, not abstraction.** A production-ready tech stack with proven patterns from [ScheduleBoard v2](https://github.com/gamalamadingdong/scheduleboardv2).
+> **Context-driven development with persistent memory.** A structured instruction system that helps AI assistants (like GitHub Copilot) maintain context across sessions and guide high-quality implementation.
 
 ## 🎯 What is this?
 
-A **tech stack starter template** that gives you production-ready infrastructure so you can focus on building your unique business logic.
+An **AI-assisted development framework** that provides structure, patterns, and persistent context to maximize the effectiveness of AI coding assistants.
 
 **What you get:**
-- ✅ Multi-tenant database with security (11 tables, ~30 RLS policies)
-- ✅ Auth and invitation system (5 Edge Functions)
-- ✅ Subscription management with Stripe (5 Edge Functions)
-- ✅ Multi-channel notifications (3 Edge Functions)
-- ✅ Mobile apps (iOS/Android) with build automation
-- ✅ CLI generator for instant project scaffolding
+- 🧠 **Memory Bank Pattern** - File-based persistent context across AI sessions
+- 📋 **Structured Instructions** - Clear guidance for AI assistants on architecture and patterns
+- 🎯 **"Plan & Act" Workflow** - Prevent AI drift by planning before implementation
+- 📚 **Decision Tracking** - ADRs (Architectural Decision Records) document the "why"
+- 🔄 **Context Hygiene** - Maintain long-term project memory without chat bloat
+- 🛠️ **Generic Utilities** - Mobile build scripts and development tools
 
 **What you build:**
-- Your domain models (jobs, appointments, services, etc.)
-- Your business logic (scheduling, workflows, calculations)
-- Your UI/UX (customized for your users)
+- Your project's specific context and requirements
+- Your architectural patterns and coding standards
+- Your business logic and domain models
+- Your AI assistant's "personality" and approach
 
-**Philosophy:** Copy-and-adapt components with clear TODO markers, not configuration-driven business logic abstraction.
+**Philosophy:** AI assistants are stateless and forget context between sessions. This template solves that problem with structured prompt engineering and file-based memory.
 
-## 🚀 Tech Stack
+## 🧠 Core Concept: The Memory Bank
 
-- **Frontend**: React 18 + TypeScript + Vite + Tailwind CSS + shadcn/ui
-- **Backend**: Supabase (PostgreSQL + Auth + Edge Functions + Realtime)
-- **Mobile**: Capacitor 7 (iOS + Android)
-- **Payments**: Stripe (optional)
-- **Email**: Resend (optional)
+AI assistants (like GitHub Copilot) are **stateless** - they reset their memory with every new chat session. For long-term projects, this creates a critical problem:
 
-## ✅ Current Status
+❌ **Without Memory Bank:**
+- AI asks the same questions repeatedly
+- Forgets architectural decisions
+- Loses context on what's been implemented
+- Drifts from original vision over time
 
-**Phases 1-5: COMPLETE** (100% ✅)
+✅ **With Memory Bank:**
+- AI reads project context at session start
+- Maintains consistent architectural patterns
+- Tracks decisions and implementations
+- Stays aligned with project goals
 
-### CLI Generator (Phase 5 - NEW!)
-- ✅ **create-sge-app** - Interactive project scaffolding
-- ✅ **720 lines** - Full-featured CLI implementation
-- ✅ **750+ lines** - Comprehensive documentation
-- ✅ **Feature toggles** - Auth, mobile, subscriptions, notifications
-- ✅ **Smart defaults** - Auto-detect package manager, validate inputs
-- ✅ **Beautiful UX** - Colors, spinners, clear feedback
+### How It Works
 
-### Foundation & Infrastructure (Phases 1-2)
-- ✅ **@sge/shared** - Foundation utilities (3 files)
-- ✅ **@sge/ui** - Component templates (2 files)
-- ✅ **Build Scripts** - iOS/Android versioning (2 scripts)
-- ✅ **Database Schema** - Multi-tenant foundation (3 SQL files)
+The Memory Bank is a set of **markdown files** that serve as the AI's "external hard drive":
 
-### Edge Functions (Phases 3-4) - 13 Functions
-- ✅ **Authentication** - 5 functions (invitations, onboarding, GDPR)
-- ✅ **Notifications** - 3 functions (orchestration, email, cleanup)
-- ✅ **Subscriptions** - 5 functions (Stripe integration, webhooks, tier management)
+```
+memory-bank/
+├── projectBrief.md          # Core mission, non-negotiables
+├── productContext.md        # User problems, business model
+├── activeContext.md         # Current state (updated frequently)
+├── systemPatterns.md        # Architecture patterns, code standards
+├── techContext.md           # Stack versions, configuration
+├── decisionLog.md           # ADRs - "why" we made choices
+├── implementationLog.md     # What's built, what worked/failed
+│
+└── Optional (add as needed):
+    ├── businessAnalysis.md  # Market, competition, revenue (for commercial projects)
+    └── experimentLog.md     # ML experiments, model training (for data science projects)
+```
 
-**Total:** 27 production-ready files (~8,000 lines of code + docs)
+**Workflow:**
+1. **Session Start**: AI reads `activeContext.md` to understand current state
+2. **Before Changes**: AI cross-references `systemPatterns.md` for consistency
+3. **After Work**: AI updates `activeContext.md` with new state
+4. **Milestone Reached**: AI updates `implementationLog.md` with progress
 
-[📖 See Complete Journey](./docs/COMPLETE-EXTRACTION-JOURNEY.md) | [📖 Phase 5 Summary](./docs/PHASE-5-CLI-COMPLETE.md)
+## 📋 Structured Instructions
 
-## 🏁 Quick Start
+Located in `.github/instructions/copilot-instructions.md`, this file provides:
 
-### Option 1: Use CLI Generator (Recommended)
+- **Role Definition**: What the AI should act as (expert engineer, etc.)
+- **Methodology**: "Plan & Act" workflow to prevent drift
+- **Code Standards**: Data-first design, YAGNI, type safety
+- **Anti-Patterns**: What to never do
+- **Project-Specific Context**: Your unique requirements
 
-> **Note:** The CLI tool is designed for local use and is not published to npm.
+### The "Plan & Act" Workflow
+
+Prevents "agentic drift" where AI creates working code that diverges from intent:
+
+1. **Analyze Request**: Understand business context and requirements
+2. **Read Memory Bank**: Check current state in `activeContext.md`
+3. **Formulate Plan**: Output step-by-step implementation plan
+4. **Get Confirmation**: Wait for approval before coding
+5. **Execute**: Implement according to approved plan
+6. **Document**: Update Memory Bank files
+
+## 🚀 Quick Start
+
+### 1. Clone This Template
 
 ```bash
-# From the root of this repository, run:
-npm run generate -- my-app
+# Clone to your new project
+git clone <this-repo-url> my-project
+cd my-project
 
-# Or specify an absolute path outside the template
-npm run generate -- C:\path\to\my-app
-
-# Interactive mode (will prompt for project name)
-npm run generate
+# Remove git history (start fresh)
+rm -rf .git
+git init
+git add .
+git commit -m "Initial commit from AI-assisted template"
 ```
 
-**The generator will:**
-- ✅ Clone the template with your selected features
-- ✅ Copy `.github/instructions/copilot-instructions.md` for AI assistance
-- ✅ Create `docs/planning/` with 7 AI-assisted planning templates
-- ✅ Generate comprehensive `README.md` with workflow guide
-- ✅ Auto-generate `.env` with your API keys
-- ✅ Remove unused features automatically
-- ✅ Install dependencies
-- ✅ Show clear next steps
+### 2. Customize Memory Bank
 
-**Generated Project Includes:**
-- 🤖 **AI-Assisted Workflow Guide** - Step-by-step development process
-- 📋 **Planning Templates** - Market research, product spec, requirements
-- 🎯 **Copilot Configuration** - Pre-configured AI assistant context
-- ⚡ **Production Infrastructure** - Auth, database, Edge Functions
-- 📱 **Mobile Ready** - iOS/Android with Capacitor (optional)
+Update the template files in `memory-bank/` with your project's context:
 
-**Available Flags:**
-- `--skip-install` - Skip dependency installation
-- `--no-mobile` - Exclude mobile app support
-- `--no-subscriptions` - Exclude Stripe subscriptions
-- `--no-notifications` - Exclude notification system
-- `--no-auth` - Exclude authentication
-- `--email <provider>` - Email provider (resend|sendgrid|none)
-- `--pm <manager>` - Package manager (npm|yarn|pnpm)
+**Required Updates:**
+- `projectBrief.md` - Define your mission and non-negotiables
+- `productContext.md` - Describe user problems and business model
+- `activeContext.md` - Set initial implementation state
+- `systemPatterns.md` - Define your architecture patterns
+- `techContext.md` - Specify your tech stack and versions
 
-[📖 Full CLI Documentation](./generator/README.md)
+**Optional (fill as you go):**
+- `decisionLog.md` - Will populate as you make architectural decisions
+- `implementationLog.md` - Will populate as you build features
 
-## 🤖 AI-First Development Workflow
+### 3. Configure AI Assistant Instructions
 
-Every generated project includes a comprehensive AI-assisted development workflow:
+Edit `.github/instructions/copilot-instructions.md`:
 
-### Phase 1: Research & Discovery (Week 1)
-Work with your AI assistant to complete `docs/planning/market-research.md`:
-- Market size and opportunity analysis
-- Target audience and personas
-- Competitive landscape
-- Market trends and gaps
+```markdown
+## Critical Technical Components
+backend: [your backend choice]
+frontend: [your frontend choice]
+mobile: [your mobile choice, if applicable]
+[... customize for your stack ...]
 
-### Phase 2: Product Strategy (Week 1-2)
-Define your product with AI assistance:
-- **Product Spec** (`product-spec.md`) - Vision, features, user stories
-- **Requirements** (`critical-requirements.md`) - Must-haves, compliance, risks
+## Project Overview
+[Replace with your specific project description]
+```
 
-### Phase 3: Technical Planning (Week 2)
-Plan implementation with AI:
-- **Architecture** (`technical-decisions.md`) - Data models, APIs, integrations
-- **Roadmap** (`development-roadmap.md`) - Phases, milestones, timelines
+### 4. Start Development with AI
 
-### Phase 4: Configure AI Context (Week 2)
-Update `.github/instructions/copilot-instructions.md` with:
-- Your project-specific goals and vision
-- Custom business logic and rules
-- Specific terminology and conventions
+Open your project in VS Code with GitHub Copilot and say:
 
-### Phase 5: Build & Iterate (Week 3+)
-Use AI to scaffold and implement:
-- Generate components with proper patterns
-- Implement features incrementally
-- Test across web and mobile platforms
-- Document decisions in `ai-chat-log.md`
+> "Read the Memory Bank files and help me set up [your project type]. Let's start by reviewing the project brief and creating an implementation plan."
 
-**Why This Works:** The SGE template provides battle-tested infrastructure. Your AI-assisted planning defines the unique business value. This workflow ensures you build the right thing, the right way.
+The AI will:
+- ✅ Read `memory-bank/activeContext.md` to understand current state
+- ✅ Review your project requirements
+- ✅ Propose an implementation plan
+- ✅ Wait for your approval before coding
+- ✅ Update Memory Bank files as work progresses
 
-### Option 2: Manual Clone
+## 📖 Using This Template
+
+### For Any Project Type
+
+This template is **framework-agnostic**. Examples of what you can build:
+
+- **Web Applications**: React, Vue, Angular, Svelte, etc.
+- **Mobile Apps**: React Native, Flutter, Capacitor, native iOS/Android
+- **Backend Services**: Node.js, Python, Go, Rust, etc.
+- **Full-Stack SaaS**: Any combination of frontend + backend
+- **CLI Tools**: Command-line applications
+- **APIs**: REST, GraphQL, gRPC
+- **Desktop Apps**: Electron, Tauri, etc.
+- **ML/Data Science**: Model training, data pipelines, research projects
+- **Commercial Products**: Includes businessAnalysis.md for market/revenue planning
+
+### Example: Starting a SaaS Project
+
+1. **Update `projectBrief.md`:**
+   ```markdown
+   ## Core Mission
+   Build a B2B project management tool for design agencies...
+   
+   ## Non-Negotiable Requirements
+   - Real-time collaboration
+   - Mobile-responsive
+   - SOC 2 compliant
+   ```
+
+2. **Update `techContext.md`:**
+   ```markdown
+   ## Core Technology Stack
+   - Frontend: React 18 + TypeScript + Vite
+   - Backend: Supabase (PostgreSQL + Auth)
+   - Hosting: Vercel
+   ```
+
+3. **Start AI Session:**
+   > "I need to set up the database schema for a project management tool. Based on the Memory Bank, help me design tables for projects, tasks, and team members with proper relationships."
+
+### Example: Starting a Mobile App
+
+1. **Update `projectBrief.md`:**
+   ```markdown
+   ## Core Mission
+   Build a fitness tracking app for personal trainers...
+   
+   ## Non-Negotiable Requirements
+   - iOS and Android support
+   - Offline-capable
+   - Sync across devices
+   ```
+
+2. **Update `techContext.md`:**
+   ```markdown
+   ## Core Technology Stack
+   - Mobile: React Native + TypeScript
+   - Backend: Firebase
+   - Platform: iOS 15+, Android 10+
+   ```
+
+3. **Start AI Session:**
+   > "Based on the Memory Bank, help me set up the React Native project structure with offline-first architecture for a fitness tracking app."
+
+## 🛠️ What's Included
+
+### Core Template Files
+```
+.github/
+  instructions/
+    copilot-instructions.md     # AI assistant configuration (customize for your project)
+
+memory-bank/
+  projectBrief.md               # Template - define your mission
+  productContext.md             # Template - define user problems
+  activeContext.md              # Template - track current state
+  systemPatterns.md             # Template - define patterns
+  techContext.md                # Template - define tech stack
+  decisionLog.md                # Template - track decisions (ADRs)
+  implementationLog.md          # Template - track progress
+  
+  Optional (add based on project type):
+  businessAnalysis.md           # Template - market, competition, revenue
+  experimentLog.md              # Template - ML experiments, training runs
+
+scripts/
+  increment-ios-build.js        # Utility: Auto-increment iOS build number
+  increment-android-build.js    # Utility: Auto-increment Android versionCode
+  README.md                     # Utility documentation
+```
+
+### Generic Utilities
+
+**Mobile Build Automation** (if building iOS/Android apps):
 
 ```bash
-# Clone the repository
-git clone https://github.com/gamalamadingdong/sge-starter.git my-app
-cd my-app
+# Increment iOS build number (required for App Store submissions)
+node scripts/increment-ios-build.js
 
-# Install dependencies
-npm install
-
-# Copy .env.example and configure
-cp .env.example .env
-# Edit .env with your Supabase, Stripe, and Resend keys
-
-# Start development
-npm run dev
+# Increment Android versionCode (required for Play Store submissions)
+node scripts/increment-android-build.js
 ```
 
-## 📦 What's Included
-
-### Foundation Utilities (`packages/shared/`)
-```typescript
-// Timezone-safe date handling
-import { getTodayLocalString, parseDateString } from '@sge/shared/lib/dateUtils';
-
-// Mobile detection
-import { useIsMobile } from '@sge/shared/hooks/use-mobile';
-
-// App Store compliance
-import { handleMobileSubscriptionUpgrade } from '@sge/shared/lib/mobileCompliance';
-```
-
-### UI Components (`packages/ui/`)
-```typescript
-// Route guards
-import { ProtectedRoute } from '@sge/ui/auth/ProtectedRoute';
-
-// Utilities
-import { cn } from '@sge/ui/lib/utils';
-```
-
-### Database Schema (`infra/schema/`)
-Multi-tenant architecture with:
-- **11 tables**: businesses, profiles, user_business_roles, invitations, notifications, etc.
-- **~30 RLS policies**: Business-level isolation and role-based access
-- **GDPR compliant**: Account deletion with cascade
-- **Subscription ready**: Stripe integration tables
-
-[📖 Database Documentation](./infra/schema/README.md)
-
-### Edge Functions (`packages/functions/`)
-
-#### Authentication (5 functions)
-- **create-invite** - Generate invitation tokens
-- **process-invite** - Handle invitation acceptance
-- **send-invite-email** - Email delivery via Resend
-- **get-invite** - Retrieve invitation details
-- **delete-user-account** - GDPR-compliant deletion
-
-[📖 Auth Documentation](./packages/functions/auth/README.md)
-
-#### Notifications (3 functions)
-- **orchestrator** - Multi-channel routing (email, SMS, push, in-app)
-- **send-email** - Resend integration with templates
-- **cleanup** - Automated notification cleanup
-
-[📖 Notifications Documentation](./packages/functions/notifications/README.md)
-
-#### Subscriptions (5 functions)
-- **stripe-webhooks** - Webhook handler (CRITICAL)
-- **create-intent** - Payment intent creation
-- **verify-session** - Session verification
-- **check-status** - Status synchronization
-- **manage-tier** - Tier management
-
-[📖 Subscriptions Documentation](./packages/functions/subscriptions/README.md)
-
-### Build Automation (`scripts/`)
-```bash
-# Increment iOS build number (required for App Store)
-npm run version:ios
-
-# Increment Android versionCode (required for Play Store)
-npm run version:android
-
-# Both platforms
-npm run version:increment
-```
-
-## 🚀 After Generation
-
-### 1. Configure Environment
-Edit `.env` with your API keys:
-```bash
-VITE_SUPABASE_URL=https://your-project.supabase.co
-VITE_SUPABASE_ANON_KEY=your-anon-key
-SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
-
-STRIPE_SECRET_KEY=sk_test_xxx
-VITE_STRIPE_PUBLISHABLE_KEY=pk_test_xxx
-STRIPE_WEBHOOK_SECRET=whsec_xxx
-
-RESEND_API_KEY=re_xxx
-```
-
-### 2. Deploy Database Schema
-Run SQL files in Supabase Dashboard → SQL Editor:
-1. `infra/schema/core.sql` - Creates tables
-2. `infra/schema/rls-policies.sql` - Sets up security
-
-Or use Supabase CLI:
-```bash
-supabase db push
-```
-
-### 3. Deploy Edge Functions
-```bash
-# Login and link project
-supabase login
-supabase link --project-ref your-project-ref
-
-# Deploy all functions
-supabase functions deploy
-
-# Or deploy individually
-supabase functions deploy create-invite
-supabase functions deploy notification-orchestrator
-supabase functions deploy stripe-webhooks
-```
-
-### 4. Configure Stripe Webhooks
-1. Go to Stripe Dashboard → Developers → Webhooks
-2. Add endpoint: `https://your-project.supabase.co/functions/v1/stripe-webhooks`
-3. Select events:
-   - `customer.subscription.created`
-   - `customer.subscription.updated`
-   - `customer.subscription.deleted`
-   - `payment_intent.succeeded`
-   - `payment_intent.payment_failed`
-4. Copy webhook secret to `.env`
-
-### 5. Configure Email Domain (Resend)
-1. Go to Resend Dashboard → Domains
-2. Add and verify your domain
-3. Update `.env` with verified sender email
-
-### 6. Start Development
-```bash
-npm run dev
-```
-Visit `http://localhost:5173`
-
-## 📱 Mobile App Setup
-
-### iOS
-```bash
-# Sync Capacitor
-npm run ios:sync
-
-# Open in Xcode
-npx cap open ios
-
-# Configure signing and run on simulator/device
-```
-
-### Android
-```bash
-# Sync Capacitor
-npx cap sync android
-
-# Open in Android Studio
-npx cap open android
-
-# Run on emulator/device
-```
-
-### Mobile Commands
-```bash
-npm run ios:dev              # Build and open in Xcode
-npm run android:dev          # Build and open in Android Studio
-npm run version:ios          # Increment build number
-npm run version:android      # Increment version code
-npm run mobile:sync          # Sync both platforms
-```
+These scripts automatically update build numbers in your Xcode and Android Studio projects.
 
 ## 🎯 Design Philosophy
 
-### What This Template IS:
-- ✅ **Production-quality infrastructure** - Battle-tested from ScheduleBoard v2
-- ✅ **Copy-and-adapt components** - Clear TODO markers for customization
-- ✅ **Mobile-first** - iOS/Android automation built-in
-- ✅ **Monetization-ready** - Stripe subscriptions included
-- ✅ **Multi-tenant** - Business isolation with RLS policies
+### Why This Approach Works
 
-### What This Template is NOT:
-- ❌ Not a rigid framework with complex abstractions
-- ❌ Not business logic configured via settings
-- ❌ Not a one-size-fits-all solution
-- ❌ Not a black box - you own and modify everything
-
-### How to Use It:
-1. **Generate** project with `create-sge-app`
-2. **Configure** API keys and deploy infrastructure
-3. **Customize** TODO markers for your use case
-4. **Build** your custom business logic on top
-5. **Deploy** with confidence (automation included)
-
-## 📁 Repository Structure
-
+**Traditional Development:**
 ```
-sge-starter/
-├── docs/                     # Complete documentation
-│   ├── QUICKSTART.md         # Getting started guide
-│   ├── COMPLETE-EXTRACTION-JOURNEY.md  # Full project history
-│   ├── PHASE-5-CLI-COMPLETE.md         # CLI generator docs
-│   └── ...                   # Phase summaries and guides
-│
-├── packages/
-│   ├── shared/              # Foundation utilities
-│   ├── ui/                  # UI components
-│   ├── functions/           # Supabase Edge Functions
-│   │   ├── auth/           # Authentication (5 functions)
-│   │   ├── notifications/  # Notifications (3 functions)
-│   │   └── subscriptions/  # Stripe integration (5 functions)
-│   └── mobile/             # Capacitor configuration
-│
-├── infra/
-│   └── schema/             # Database schema and RLS policies
-│
-├── scripts/                # Build automation (iOS/Android)
-├── generator/              # CLI tool (create-sge-app)
-└── examples/               # Example implementations
+Developer → Code → Test → Deploy
+(All context in developer's head)
 ```
 
-## 🎯 Target Applications
-
-This template is ideal for:
-
-### Service Businesses
-- Field service management (HVAC, plumbing, electrical)
-- Maintenance services (cleaning, landscaping)
-- Personal care (beauty, fitness, tutoring)
-- Professional services (consulting, training)
-
-### SaaS Products
-- B2B productivity tools
-- Multi-tenant applications
-- Mobile-first platforms
-- Subscription-based services
-
-### Key Features:
-- ✅ Multi-tenant with business isolation
-- ✅ Role-based access control (6 tiers)
-- ✅ Subscription management (Stripe)
-- ✅ iOS/Android native apps (Capacitor)
-- ✅ Real-time updates (Supabase)
-- ✅ App Store compliant
-
-## 📚 Documentation
-
-### Getting Started
-- 📄 **[QUICKSTART.md](docs/QUICKSTART.md)** - Quick start guide
-- 📄 **[CLI-GENERATOR-READY.md](docs/CLI-GENERATOR-READY.md)** - CLI usage guide
-- 📄 **[COMPLETE-EXTRACTION-JOURNEY.md](docs/COMPLETE-EXTRACTION-JOURNEY.md)** - Full project history
-
-### Package Documentation
-- 📦 **[packages/shared/README.md](packages/shared/README.md)** - Utilities guide
-- 📦 **[packages/ui/README.md](packages/ui/README.md)** - Component guide
-- 📦 **[generator/README.md](generator/README.md)** - CLI documentation
-
-### Feature Documentation
-- 🔐 **[packages/functions/auth/README.md](packages/functions/auth/README.md)** - Authentication
-- 🔔 **[packages/functions/notifications/README.md](packages/functions/notifications/README.md)** - Notifications
-- 💳 **[packages/functions/subscriptions/README.md](packages/functions/subscriptions/README.md)** - Subscriptions
-- 🗄️ **[infra/schema/README.md](infra/schema/README.md)** - Database schema
-
-### Development
-- 📋 **[DEVELOPMENT-ROADMAP.md](docs/DEVELOPMENT-ROADMAP.md)** - Development timeline
-- 📋 **[TEMPLATE-PHILOSOPHY.md](docs/TEMPLATE-PHILOSOPHY.md)** - Design principles
-- 📋 **[TEMPLATE-STRATEGY.md](docs/TEMPLATE-STRATEGY.md)** - Technical strategy
-
-## 🚀 Time to Value
-
-### Before SGE Template
+**AI-Assisted Development Without Memory:**
 ```
-1. Research tech stack (weeks)
-2. Set up database (days)
-3. Implement authentication (weeks)
-4. Add notifications (weeks)
-5. Integrate Stripe (weeks)
-6. Configure mobile (weeks)
-7. Set up build automation (days)
-8. Write documentation (weeks)
-
-Total: 2-3 months
+Developer → Prompt AI → Code → Forget Context → Repeat
+(Context lost between sessions)
 ```
 
-### With SGE Template
+**AI-Assisted Development With Memory Bank:**
 ```
-1. Run create-sge-app (5 minutes)
-2. Configure API keys (10 minutes)
-3. Deploy database schema (5 minutes)
-4. Deploy Edge Functions (10 minutes)
-5. Start building business logic (immediately)
-
-Total: 30 minutes to production-ready
+Developer → Update Memory Bank → Prompt AI → AI Reads Context →
+Code with Consistency → Update Memory Bank → Maintain Context
+(Persistent context across sessions)
 ```
 
-**Time Saved:** 2-3 months → 30 minutes = **99% faster**
+### Key Principles
 
-## 📦 Publishing the CLI to npm (Optional)
+1. **Context is King**: AI needs explicit context to make good decisions
+2. **File-Based Memory**: Use files, not chat history, for persistence
+3. **Plan Before Act**: Always plan and get approval before implementation
+4. **Data-First Design**: Define data structures before writing logic
+5. **Document Decisions**: Track the "why" not just the "what"
+6. **YAGNI**: Reject complexity, build only what's needed now
+7. **Simplicity**: Prefer simple, direct solutions over clever abstraction
 
-To make the CLI globally available via `npx @sge/create-app`:
+## 📚 Best Practices
 
-```bash
-# Navigate to generator directory
-cd generator
+### Starting a New Feature
 
-# Ensure you're logged in to npm
-npm login
-
-# Update version if needed
-npm version patch  # or minor/major
-
-# Build the package
-npm run build
-
-# Publish to npm (first time: use --access public for scoped packages)
-npm publish --access public
-
-# After publishing, users can run:
-npx @sge/create-app my-app
+```markdown
+1. Open new Copilot chat
+2. Say: "Read memory-bank/activeContext.md and help me implement [feature]"
+3. AI reads context and proposes plan
+4. Review and approve plan
+5. AI implements according to plan
+6. AI updates activeContext.md with new state
 ```
 
-**Requirements:**
-- npm account with publishing permissions
-- Proper scoping (`@sge/create-app`)
-- Built dist/ directory
-- Valid package.json configuration
+### Making Architectural Decisions
+
+```markdown
+1. Discuss options with AI
+2. Document decision in memory-bank/decisionLog.md as ADR
+3. Include: Context, Decision, Rationale, Consequences, Alternatives
+4. Update systemPatterns.md with new pattern (if applicable)
+```
+
+### Context Getting Bloated
+
+```markdown
+If chat context becomes too large:
+1. Save important decisions to decisionLog.md
+2. Update activeContext.md with current state
+3. Start fresh chat
+4. Say: "Read memory-bank files and continue from where we left off"
+```
+
+### Session-to-Session Workflow
+
+```markdown
+**End of Session:**
+1. Update activeContext.md with:
+   - What was completed
+   - What's next
+   - Any blockers
+2. If milestone reached, update implementationLog.md
+
+**Start of Session:**
+1. Say: "Read memory-bank/activeContext.md and summarize current state"
+2. AI reads and provides context
+3. Continue working with full context restored
+```
+
+## 🔧 Customization Guide
+
+### For Your Specific Project
+
+1. **Fill Out Memory Bank Templates**: Replace placeholders with your actual project details
+2. **Customize copilot-instructions.md**: Add project-specific patterns and anti-patterns
+3. **Add Project Files**: Create your actual codebase structure
+4. **Update This README**: Replace generic descriptions with your project specifics
+
+### Adapting for Different Team Sizes
+
+**Solo Developer:**
+- Keep all Memory Bank files simple and personal
+- Focus on tracking your own thought process
+
+**Small Team (2-5):**
+- Use Memory Bank as shared team context
+- Require all team members to update activeContext.md
+- Review decisionLog.md together during standups
+
+**Larger Team:**
+- Assign Memory Bank ownership/maintenance
+- Create team-specific systemPatterns.md sections
+- Use implementationLog.md for sprint retrospectives
+
+## 🎓 Learning More
+
+### Understanding ADRs (Architectural Decision Records)
+
+See `memory-bank/decisionLog.md` for template and examples. Key elements:
+
+- **Context**: What situation led to this decision?
+- **Decision**: What did we decide?
+- **Rationale**: Why this choice? (most important!)
+- **Consequences**: What are the trade-offs?
+- **Alternatives**: What else did we consider?
+
+### Memory Bank File Purposes
+
+| File | Purpose | Update Frequency |
+|------|---------|------------------|
+| `projectBrief.md` | Core mission, non-negotiables | Rarely (only major pivots) |
+| `productContext.md` | User problems, business model | Quarterly or when strategy changes |
+| `activeContext.md` | Current work, next steps | **Every session** |
+| `systemPatterns.md` | Architecture patterns | When new patterns emerge |
+| `techContext.md` | Stack, versions, config | When tech changes |
+| `decisionLog.md` | ADRs | When architectural decisions made |
+| `implementationLog.md` | Feature history | When milestones reached |
+| `businessAnalysis.md` (optional) | Market, competition, revenue | Quarterly or when market changes |
+| `experimentLog.md` (optional) | ML experiments, training runs | After each experiment/training run |
 
 ## 🤝 Contributing
 
-This template is extracted from ScheduleBoard v2. To contribute:
+This is a template meant to be forked and customized. If you develop useful patterns:
 
-1. Test extracted components in real projects
-2. Suggest additional patterns to extract
-3. Improve documentation and examples
-4. Report issues with customization points
+1. Document them in your own `systemPatterns.md`
+2. Share learnings about what works/doesn't work
+3. Consider contributing generic utilities back to this repo
 
 ## 📝 License
 
-MIT License - Use freely for your projects
+MIT License - Use freely for any project
 
 ## 🙏 Credits
 
-Extracted from [ScheduleBoard v2](https://github.com/gamalamadingdong/scheduleboardv2) production codebase.
+Memory Bank pattern inspired by ["Persistent Context Architecture" for AI assistants](https://example.com).
 
-Built with proven patterns from real production use.
+Built to solve the stateless nature of LLMs in long-term software projects.
 
 ---
 
-**Ready to start?** 
+**Ready to start?**
 
-**Local Usage:** Clone this repo, build the generator, and run `node generator/dist/index.js my-app`
+1. Clone this template
+2. Customize `memory-bank/` files for your project
+3. Update `.github/instructions/copilot-instructions.md`
+4. Start your first AI-assisted session!
 
-**After npm publish:** `npx @sge/create-app my-app`
-
-**Last Updated:** October 2, 2025
+**Last Updated:** December 15, 2025
