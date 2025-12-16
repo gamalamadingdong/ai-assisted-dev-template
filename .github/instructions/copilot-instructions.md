@@ -51,53 +51,55 @@ To prevent "agentic drift" where code works but diverges from user intent:
 - Always reference Working Memory files to restore context in new sessions
 - Keep `activeContext.md` as single source of truth for current state
 
+## Tool Selection & Integration Strategy
+
+### Prefer MCP Servers Over CLI Tools
+
+**Model Context Protocol (MCP) servers provide superior integration compared to CLI tools.** When available, always prefer MCP servers for:
+
+**Why MCP Servers Are Better:**
+- ✅ **Structured data**: Returns typed, parseable responses (not raw text)
+- ✅ **Error handling**: Built-in error responses that AI can understand
+- ✅ **Discoverability**: AI can query available tools and their schemas
+- ✅ **Composability**: Easier to chain operations and maintain state
+- ✅ **Reliability**: Less parsing errors, no shell escaping issues
+
+**MCP Over CLI Examples:**
+
+| Use Case | ❌ Avoid CLI | ✅ Prefer MCP Server |
+|----------|-------------|---------------------|
+| **Supabase** | `supabase` CLI | Supabase MCP server |
+| **Vercel** | `vercel` CLI | Vercel MCP server |
+| **GitHub** | `gh` CLI | GitHub MCP server |
+| **Docker** | `docker` CLI | Docker MCP server (if available) |
+| **AWS** | `aws` CLI | AWS MCP server (if available) |
+
+**When to Use CLI:**
+- ✅ No MCP server available for the tool
+- ✅ Simple one-off commands (e.g., `git status`)
+- ✅ Native OS commands (e.g., `ls`, `mkdir`)
+- ✅ Build tools (e.g., `npm run build`)
+
+**How to Check for MCP Servers:**
+1. Check if MCP server is available in your tools
+2. If yes, use the MCP server tool calls
+3. If no, fall back to CLI via `run_in_terminal`
+
+**Example Decision Process:**
+```
+User asks: "Deploy to Vercel"
+
+Bad approach:  run_in_terminal("vercel deploy")
+Good approach: Use Vercel MCP server's deploy_to_vercel tool
+
+Why? Structured response, better error handling, can check deployment status programmatically
+```
+
 ## Critical Technical Components
 
-> **IMPORTANT**: Update this section with your actual tech stack!
+> **IMPORTANT**: Update with your actual tech stack in `working-memory/techContext.md`!
 
-```
-backend: [Your backend - Node.js, Python, Go, Rust, etc.]
-database: [Your database - PostgreSQL, MySQL, MongoDB, etc.]
-frontend: [Your frontend - React, Vue, Svelte, Angular, etc.]
-mobile: [Your mobile - React Native, Flutter, Capacitor, native, etc.]
-ui framework: [Your UI framework - Tailwind, Material-UI, Bootstrap, etc.]
-hosting: [Your hosting - Vercel, AWS, GCP, Azure, etc.]
-```
-
-## Project Overview
-
-> **IMPORTANT**: Replace this entire section with your project's description!
-
-**[Your Project Name]** is [brief description of what you're building].
-
-**CURRENT STATUS**: [Describe current phase - initial setup, MVP development, beta, etc.]
-
-### Mission
-[What is the core goal of this project? What problem does it solve?]
-
-### Target Users
-[Who will use this? What are their needs?]
-
-### Key Features
-1. [Feature 1]
-2. [Feature 2]
-3. [Feature 3]
-
-## Technology Stack & Architecture
-
-> **IMPORTANT**: Update with your actual stack!
-
-### Core Technologies
-- **Frontend**: [Your frontend stack]
-- **Backend**: [Your backend stack]
-- **Database**: [Your database]
-- **Mobile** (if applicable): [Your mobile solution]
-- **Hosting**: [Your hosting provider]
-
-### Key Architectural Decisions
-- [List your key architectural choices]
-- [Why you chose certain patterns]
-- [Important constraints or requirements]
+Refer to `working-memory/techContext.md` for full stack details, versions, and configuration.
 
 ## Code Quality Standards
 
@@ -144,63 +146,13 @@ Always define:
 - Add ADRs to `decisionLog.md` for architectural decisions
 - Keep `implementationLog.md` updated with milestones
 
-## Testing Strategy
 
-> **IMPORTANT**: Update with your testing approach!
 
-### What to Test
-- [Critical business logic]
-- [Integration points]
-- [User workflows]
 
-### Testing Approach
-- [Unit tests for...]
-- [Integration tests for...]
-- [E2E tests for...]
 
-## Security & Best Practices
 
-> **IMPORTANT**: Add your security requirements!
 
-### Security Considerations
-- [Authentication approach]
-- [Authorization patterns]
-- [Data protection requirements]
-- [Compliance needs]
 
-### Performance Targets
-- [Load time goals]
-- [Response time goals]
-- [Scalability requirements]
-
-## Common Patterns
-
-> **IMPORTANT**: Document your project-specific patterns here!
-
-### [Pattern Name 1]
-```
-[Description of when and how to use this pattern]
-[Code example if applicable]
-```
-
-### [Pattern Name 2]
-```
-[Description of when and how to use this pattern]
-[Code example if applicable]
-```
-
-## Anti-Patterns (What NOT to Do)
-
-> **IMPORTANT**: Add your project-specific anti-patterns!
-
-### ❌ Never Do This:
-1. [Anti-pattern 1 with explanation]
-2. [Anti-pattern 2 with explanation]
-3. [Anti-pattern 3 with explanation]
-
-### ⚠️ Be Careful With:
-1. [Risky pattern 1 with explanation]
-2. [Risky pattern 2 with explanation]
 
 ## Interaction Style
 
@@ -299,17 +251,7 @@ If the user points out a missed step:
 
 ## Project-Specific Guidelines
 
-> **IMPORTANT**: Add any project-specific rules, constraints, or guidelines here!
-
-### [Your Custom Guidelines]
-- [Guideline 1]
-- [Guideline 2]
-- [Guideline 3]
-
-### [Domain-Specific Rules]
-- [Rule 1]
-- [Rule 2]
-- [Rule 3]
+> Add project-specific rules in `working-memory/systemPatterns.md`
 
 ---
 
