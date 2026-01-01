@@ -77,7 +77,7 @@ Located in `.github/instructions/copilot-instructions.md`, this file provides:
 - **Role Definition**: What the AI should act as (expert engineer, etc.)
 - **Methodology**: "Plan & Act" workflow to prevent drift
 - **Behavioral Enforcement**: Mandatory checks and verification protocols
-- **Code Standards**: Data-first design, YAGNI, type safety
+- **Code Standards**: Data-first design, type safety, keep it simple stupid (KISS)
 - **Anti-Patterns**: What to never do
 - **Project-Specific Context**: Your unique requirements
 
