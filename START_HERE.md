@@ -37,6 +37,11 @@ Before we begin, I need to choose how we'll work together. Here are my options:
 - Style: Explain-first with plain language
 - Choose if: I'm non-technical and want to understand before implementing
 
+**Orchestrator Mode (RECOMMENDED):**
+- For: Everyone
+- Style: "General Contractor" who delegates to experts
+- Choose if: You want the AI to automatically consult the Architect, Security, etc. for you.
+
 **My choice:** [Tell me which mode, or ask "What interaction modes are available?" for more details]
 
 ---
@@ -139,6 +144,13 @@ THEN: Based on what you found, suggest answers and ask me to confirm/correct:
 - What have I already completed? (List implemented features)
 - What am I currently working on? (In-progress features)
 - What's not started yet? (Backlog items, TODO comments)
+
+### 6. Team Expansion (Optional)
+
+If this is a specialized project, ask me to create new agents for you now.
+*   "Create a Lawyer agent for our Terms of Service."
+*   "Create a Game Designer for our core loop."
+*   "Create a Biochemist for our lab data."
 
 ### Process
 

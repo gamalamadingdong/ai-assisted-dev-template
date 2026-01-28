@@ -16,6 +16,8 @@ An **AI-assisted development framework** that provides structure, patterns, and 
 - 🔒 **Behavioral Enforcement** - Mandatory checks ensure AI follows working memory discipline
 - 📚 **Decision Tracking** - ADRs (Architectural Decision Records) document the "why"
 - 🧹 **Context Hygiene** - Maintain long-term project memory without chat bloat
+- 👥 **16-Agent Virtual Team** - A full roster of experts (DevOps, Legal, specific domains)
+- 👑 **Smart Orchestration** - Automatic delegation for complex tasks
 - 🛠️ **Generic Utilities** - Mobile build scripts and development tools
 
 **What you build:**
@@ -66,6 +68,38 @@ working-memory/
 2. **Before Changes**: AI cross-references `systemPatterns.md` for consistency
 3. **After Work**: AI updates `activeContext.md` with new state
 4. **Milestone Reached**: AI updates `implementationLog.md` with progress
+
+6. **Milestone Reached**: AI updates `implementationLog.md` with progress
+
+## 👥 The 16-Agent Virtual Team
+
+This template includes a pre-built roster of **16 Expert Agents**.
+The **Orchestrator** (your default contact) automatically delegates work to the right expert.
+
+| Role | Focus | "Superpower" |
+| :--- | :--- | :--- |
+| **👑 Orchestrator** | Management | Delegation & Synthesis |
+| **💼 Business Manager** | Strategy | ROI & Risk Analysis |
+| **📣 Marketing Lead** | Growth | Positioning & Messaging |
+| **📈 Market Analyst** | Research | Trends & Competitors |
+| **📦 Product Manager** | User | Requirements & Value |
+| **🏛️ System Architect** | Engineering | Structure & Scalability |
+| **🛠️ Senior Engineer** | Coding | Performance & Best Practices |
+| **🚀 DevOps Engineer** | Operations | CI/CD & Infrastructure |
+| **🛡️ QA Specialist** | Quality | Testing & Bugs |
+| **🏴‍☠️ Red Team** | Security | Exploits & Vulnerabilities |
+| **🎨 UI/UX Designer** | Design | Visuals & Accessibility |
+| **🎭 Art Director** | Creative | Brand & Vibe |
+| **📝 Tech Writer** | Docs | Clarity & Onboarding |
+| **🎓 Scholar** | Academia | SOTA Research & Citations |
+| **🧪 Scientist** | Science | First Principles & Hypotheses |
+| **🧮 Quant Researcher** | Math | Models & Statistics |
+
+### 🤖 Self-Replication
+Need a Lawyer? A Game Designer? Just ask:
+> "Create a Lawyer agent."
+
+The system will **write the new agent for you** and add it to the team.
 
 ## 📋 Structured Instructions
 
