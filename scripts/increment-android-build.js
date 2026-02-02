@@ -1,7 +1,7 @@
 /**
  * Increments Android build number (versionCode) for Play Store uploads
  * 
- * @source Extracted from ScheduleBoard v2
+ *
  * @license MIT
  * 
  * This script automatically increments the versionCode in your Android
@@ -22,23 +22,23 @@ console.log('🔧 Incrementing Android build number for Play Store upload...');
 
 if (fs.existsSync(buildGradlePath)) {
   let content = fs.readFileSync(buildGradlePath, 'utf8');
-  
+
   // Find the current versionCode
   const buildMatch = content.match(/versionCode (\d+)/);
-  
+
   if (buildMatch) {
     const currentBuild = parseInt(buildMatch[1]);
     const newBuild = currentBuild + 1;
-    
+
     console.log(`📊 Current Android versionCode: ${currentBuild}`);
     console.log(`📊 New Android versionCode: ${newBuild}`);
-    
+
     // Replace the versionCode
     content = content.replace(
-      new RegExp(`versionCode ${currentBuild}`, 'g'), 
+      new RegExp(`versionCode ${currentBuild}`, 'g'),
       `versionCode ${newBuild}`
     );
-    
+
     fs.writeFileSync(buildGradlePath, content, 'utf8');
     console.log(`✅ Android versionCode incremented from ${currentBuild} to ${newBuild}`);
     console.log('🚀 Ready for Play Store upload!');

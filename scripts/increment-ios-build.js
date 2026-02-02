@@ -1,7 +1,7 @@
 /**
  * Increments iOS build number for App Store uploads
  * 
- * @source Extracted from ScheduleBoard v2
+ *
  * @license MIT
  * 
  * This script automatically increments the CURRENT_PROJECT_VERSION in your
@@ -22,23 +22,23 @@ console.log('🔧 Incrementing iOS build number for App Store upload...');
 
 if (fs.existsSync(projectPath)) {
   let content = fs.readFileSync(projectPath, 'utf8');
-  
+
   // Find the current build number
   const buildMatch = content.match(/CURRENT_PROJECT_VERSION = (\d+);/);
-  
+
   if (buildMatch) {
     const currentBuild = parseInt(buildMatch[1]);
     const newBuild = currentBuild + 1;
-    
+
     console.log(`📊 Current build number: ${currentBuild}`);
     console.log(`📊 New build number: ${newBuild}`);
-    
+
     // Replace all instances of the current build number
     content = content.replace(
-      new RegExp(`CURRENT_PROJECT_VERSION = ${currentBuild};`, 'g'), 
+      new RegExp(`CURRENT_PROJECT_VERSION = ${currentBuild};`, 'g'),
       `CURRENT_PROJECT_VERSION = ${newBuild};`
     );
-    
+
     fs.writeFileSync(projectPath, content, 'utf8');
     console.log(`✅ iOS build number incremented from ${currentBuild} to ${newBuild}`);
     console.log('🚀 Ready for App Store upload!');

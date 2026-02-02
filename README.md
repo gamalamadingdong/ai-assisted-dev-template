@@ -567,7 +567,7 @@ MIT License - Use freely for any project
 
 ## 🙏 Credits
 
-Working Memory pattern inspired by ["Persistent Context Architecture" for AI assistants](https://example.com).
+Working Memory pattern inspired by "Persistent Context Architecture" for AI assistants.
 
 Built to solve the stateless nature of LLMs in long-term software projects.
 
