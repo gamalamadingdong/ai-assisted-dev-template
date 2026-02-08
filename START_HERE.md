@@ -1,7 +1,6 @@
 # 🚀 Start Here: Initialize Your Project with AI
 
 **Copy and paste this entire file into your AI assistant to get started!**
-
 This prompt will guide you through filling out all the Working Memory files with your project's specific details.
 
 ---
